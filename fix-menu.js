@@ -1,36 +1,35 @@
 const fs = require("fs");
 
-const header = "./src/_includes/components/header.njk";
-const siteData = "./src/_data/site.js";
+/* ---------- 1. Hamburger Logik ---------- */
 
-/* 1. Hamburger Menü korrigieren */
+const headerFile = "./src/_includes/components/header.njk";
 
-let headerContent = fs.readFileSync(header, "utf8");
+let header = fs.readFileSync(headerFile,"utf8");
 
-headerContent = headerContent.replace(
-`<li>
-              {% set itemIsCurrent = (navCurrentUrl == item.url) or (navCurrentUrl == item.url ~ "/") or (navCurrentUrl ~ "/" == item.url) %}
-              <a class="menu-link{% if itemIsCurrent %} is-current{% endif %}" href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}{% if itemIsCurrent and not item.external %} aria-current="page"{% endif %}>{{ item.label }}</a>
-            </li>`,
+header = header.replace(
+/<li>\s*{% set itemIsCurrent[\s\S]*?<\/li>/,
 `{% set itemIsCurrent = (navCurrentUrl == item.url) or (navCurrentUrl == item.url ~ "/") or (navCurrentUrl ~ "/" == item.url) %}
 {% if not itemIsCurrent %}
 <li>
-  <a class="menu-link" href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.label }}</a>
+<a class="menu-link" href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.label }}</a>
 </li>
 {% endif %}`
 );
 
-fs.writeFileSync(header, headerContent);
+fs.writeFileSync(headerFile,header);
 
 
-/* 2. FR + PT Menütexte korrigieren */
+/* ---------- 2. FR + PT Texte ---------- */
 
-let siteContent = fs.readFileSync(siteData, "utf8");
+const navFile = "./src/_data/navigation.js";
 
-siteContent = siteContent
-.replace("Services Luxe", "Luxe Services")
-.replace("Serviços de Luxo", "Luxo Serviços");
+let nav = fs.readFileSync(navFile,"utf8");
 
-fs.writeFileSync(siteData, siteContent);
+nav = nav
+.replace(/Services de luxe/g,"Luxe Services")
+.replace(/Serviços de luxo/g,"Luxo Serviços");
 
-console.log("Hamburger Menü + FR/PT Texte korrigiert.");
+fs.writeFileSync(navFile,nav);
+
+
+console.log("Menü vollständig korrigiert.");
