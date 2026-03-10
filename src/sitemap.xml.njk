@@ -1,0 +1,22 @@
+---
+permalink: /sitemap.xml
+layout: null
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for p in collections.all %}
+  {%- if p.url and p.url != '/' and p.url != '/index.html' and p.data.sitemap != false and (p.data.eleventyExcludeFromCollections != true or p.url == '/sitemap.xml') and p.url != '/sitemap.xml' -%}
+  <url>
+    <loc>{{ site.canonicalBase }}{{ p.url }}</loc>
+    {%- if p.data.langLinks %}
+    <xhtml:link rel="alternate" hreflang="de" href="{{ site.canonicalBase }}{{ p.data.langLinks.de }}" />
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site.canonicalBase }}/en/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="{{ site.canonicalBase }}{{ p.data.langLinks.fr }}" />
+    <xhtml:link rel="alternate" hreflang="pt" href="{{ site.canonicalBase }}{{ p.data.langLinks.pt }}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ site.canonicalBase }}/en/" />
+    {%- endif %}
+  </url>
+  {%- endif -%}
+{%- endfor %}
+</urlset>

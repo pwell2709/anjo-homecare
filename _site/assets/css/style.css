@@ -1,0 +1,163 @@
+/* style.css
+   Entry point. Keep your HTML link as-is (<link rel="stylesheet" href="/assets/css/style.css">).
+   theme.css must contain variables only.
+   base.css + components.css contain all actual rules.
+*/
+
+@import url("/assets/css/theme.css");
+@import url("/assets/css/base.css");
+@import url("/assets/css/components.css");
+
+/* === CTA Social Icons === */
+
+.ctaSocial {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+/* === CTA Layout Fix === */
+.ctaBar{
+  display:flex;
+  justify-content:center;
+  width:100%;
+}
+
+.ctaInner{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  width:100%;
+  max-width:900px;
+}
+
+.socialIcon {
+  width: 22px;
+  height: 22px;
+  fill: #001f3f; /* Navy */
+  transition: opacity 0.3s ease;
+}
+
+.socialIcon:hover {
+  opacity: 0.6;
+}
+
+/* === CTA: fixiert + mittig + korrektes Spacing === */
+.ctaBar{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 22px;              /* Höhe/Abstand nach Geschmack */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;      /* nur Inner klickbar */
+}
+
+.ctaInner{
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: auto;
+  max-width: 980px;
+  padding: 10px 14px;
+}
+
+/* Falls dein Body unten Padding hatte: hier NICHT ändern.
+   Diese CTA sitzt jetzt unabhängig davon. */
+
+/* === Kontakt-Button: Underline/Strich entfernen === */
+.ctaInner .ctaBtn,
+.ctaInner .ctaBtn:link,
+.ctaInner .ctaBtn:visited{
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none;          /* falls irgendwo als Linie wahrgenommen */
+}
+
+/* Sicherheit: auch für Social Links */
+.ctaInner a{
+  text-decoration: none;
+}
+
+/* === Kontakt Button größer & fetter === */
+.ctaInner .ctaBtn{
+  font-size: 18px;     /* ca. +2px (wenn vorher 16px war) */
+  font-weight: 700;    /* fetter */
+  letter-spacing: 0.3px;
+  color: #001f3f;      /* Navy text (no underline) */
+}
+/* === CTA (two buttons only) === */
+.ctaInner--two{
+  gap: 12px;
+  padding: 10px 12px;
+}
+
+.ctaInner .ctaBtn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+  border-radius: 16px;
+
+  /* Same glass style as hamburger panel */
+  background: rgba(255,255,255,.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,31,63,.14);
+  box-shadow: 0 18px 45px rgba(0,0,0,.18);
+
+  color: #001f3f;
+  font-weight: 800;
+  font-size: 19px; /* +1pt */
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+
+.ctaBtn--wa .ctaBtnIcon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 22px;
+  height: 22px;
+}
+
+.ctaBtn--wa svg{
+  width: 22px;
+  height: 22px;
+  display:block;
+}
+
+.ctaBtn--wa svg path{
+  fill:#25D366;
+}
+
+@media (max-width: 520px){
+  .ctaInner--two{
+    gap: 10px;
+  }
+  .ctaInner .ctaBtn{
+    padding: 10px 12px;
+    font-size: 18px;
+  }
+}
+
+
+/* === CTA Mobile Offset +10mm (Fix) === */
+@media (max-width: 820px){
+  .ctaBar{
+    bottom: calc(22px + 10mm);
+  }
+}
+
+
+/* === Content Bottom Spacing Fix (Text runs too low) === */
+.l-main{
+  padding-bottom: 140px;
+}
+

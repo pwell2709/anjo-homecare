@@ -1,0 +1,19 @@
+{% set t = {
+  de: { label: "Zurück" },
+  en: { label: "Back" },
+  fr: { label: "Retour" },
+  pt: { label: "Voltar" }
+} %}
+{% set L = t[pageLang] or t.de %}
+
+<div class="back-wrap">
+  <button
+    class="back-btn"
+    type="button"
+    data-back-button
+    data-fallback="/{{ pageLang }}/"
+    aria-label="{{ L.label }}"
+  >
+    ← {{ L.label }}
+  </button>
+</div>

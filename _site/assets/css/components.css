@@ -1,0 +1,1230 @@
+/* components.css
+   Component styles only.
+   No global element styling. No !important.
+*/
+
+/* =========================================================
+   HEADER (container placeholder)
+========================================================= */
+
+.site-header{
+  position: relative;
+  padding: 0;
+}
+
+.brand{
+  display:block;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+/* =========================================================
+   FIXED CONTROLS (Hamburger left / Language switch right)
+========================================================= */
+
+.hamburger{
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: var(--z-menu);
+
+  border: 0;
+  background: transparent;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 10px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hamburger-lines{
+  display:inline-flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger-lines span{
+  display:block;
+  width: 30px;
+  height: 3px;
+  background: var(--navy);
+  border-radius: 3px;
+}
+
+.lang-switch{
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: var(--z-menu);
+
+  display:flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-btn{
+  width: 25px;
+  height: 25px;
+  border-radius: 999px;
+
+  display:inline-block;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+
+  border: 1px solid rgba(0,31,63,.22);
+  text-decoration:none;
+  overflow: hidden;
+}
+
+.lang-btn[aria-current="page"]{
+  border-color: rgba(0,31,63,.55);
+}
+
+.lang-btn:focus-visible{
+  outline: 2px solid rgba(0,31,63,.55);
+  outline-offset: 2px;
+}
+
+.lang-btn--de{ background-image: url("/assets/images/flags/de.svg"); }
+.lang-btn--en{ background-image: url("/assets/images/flags/en.svg"); }
+.lang-btn--fr{ background-image: url("/assets/images/flags/fr.svg"); }
+.lang-btn--pt{ background-image: url("/assets/images/flags/pt.svg"); }
+
+/* =========================================================
+   HERO LOGO
+========================================================= */
+
+.hero-logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  /* tighter: logo closer to top and less gap to headline */
+  padding: 0 var(--pad) 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.hero-logo img{
+  height: 100%;
+  width: auto;
+  max-width: min(95vw, 100%);
+}
+
+
+
+.hero-logo--landing{
+  height: 29vh;
+  min-height: 235px;
+}
+
+
+.hero-logo--small{
+  height: 29vh;
+  min-height: 235px;
+}
+
+/* =========================================================
+   HERO SPACING TWEAKS (logo closer to top, text closer to logo)
+========================================================= */
+
+
+
+
+/* =========================================================
+   HERO LOGO – MOBILE TUNING
+   Reduce dead space below logo after logo size reductions.
+========================================================= */
+
+@media (max-width: 820px){
+  .hero-logo{
+    padding-top: 4px;
+    padding-bottom: 0;
+  }
+
+  /* Let containers shrink to content on mobile (prevents huge empty space) */
+  
+
+  
+
+  .hero-logo--landing img,
+  .hero-logo--small img{
+    max-height: 150px;
+  }
+
+  /* Main index headline closer to logo (index uses <section class="hero"> without .page-wrapper) */
+  .hero > h1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* If index uses wrapper variants, keep headline tight to logo */
+  .hero h1{
+    margin-top: 4px !important;
+  }
+}
+
+/* =========================================================
+   PAGE WRAPPER SPACING (mobile-safe)
+   - Hero pages (logo + h1): pull headline closer to logo
+   - Standard pages (h1 first): keep clear of fixed controls
+========================================================= */
+
+.page-wrapper > .hero-logo + h1{
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+
+/* Pages without hero logo (e.g., Services, Über uns): avoid being too high under fixed controls */
+.page-wrapper > h1:first-child{
+  margin-top: 70px;
+  margin-bottom: 14px;
+}
+
+/* Center the content column reliably */
+.page-wrapper{
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-wrapper > .tagline{
+  margin-top: 0;
+}
+
+.page-wrapper > .lead{
+  margin-top: 10px;
+}
+
+/* =========================================================
+   HAMBURGER PANEL (transparent, opens below hamburger)
+========================================================= */
+
+.menu-panel{
+  position: fixed;
+  top: 64px;
+  left: 14px;
+
+  height: auto;
+  max-height: calc(100vh - 78px);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  width: max-content;
+  max-width: min(520px, calc(100vw - 28px));
+
+  transform: translateX(-120%);
+  transition: transform var(--transition-fast);
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+
+  z-index: var(--z-menu);
+  padding: 12px;
+}
+
+.menu-panel.is-open{
+  transform: translateX(0);
+}
+
+.menu-panel-inner{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-panel-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+}
+
+.menu-title{
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.menu-close{
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  color: var(--navy);
+}
+
+.menu-links{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 85%;
+}
+
+
+.menu-item-has-sub{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  width:max-content;
+  min-width:100%;
+}
+
+.menu-subtoggle{
+  border:0;
+  background:transparent;
+  padding:6px 0 6px 8px;
+  margin-left:8px;
+  cursor:pointer;
+  color:#001f3f;
+  font:inherit;
+  line-height:1;
+  flex:0 0 auto;
+}
+
+.menu-subtoggle:hover{ opacity: .9; }
+
+.menu-link--current{
+  opacity: .55;
+  cursor: default;
+}
+.menu-link{
+  display:block;
+  font-weight: 400;
+  color: var(--navy);
+  padding: 4px 0;
+  text-decoration: none;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.menu-link:hover{
+  text-decoration: underline;
+}
+
+.menu-backdrop{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: var(--z-backdrop);
+}
+
+.menu-backdrop.is-open{
+  display: block;
+}
+
+/* Scrollbar styling for menu panel (track blends with glass panels) */
+.menu-panel{
+  scrollbar-color: rgba(0,31,63,.35) rgba(255,255,255,.08);
+  scrollbar-width: thin;
+}
+.menu-panel::-webkit-scrollbar{ width: 10px; }
+.menu-panel::-webkit-scrollbar-track{ background: rgba(255,255,255,.08); }
+.menu-panel::-webkit-scrollbar-thumb{
+  background: rgba(0,31,63,.28);
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,.08);
+}
+
+.menu-open{
+  overflow: hidden;
+}
+
+/* =========================================================
+   COOKIE BANNER (ABOVE CTA) — final
+   - 10% bigger
+   - always overlays CTA
+   - glass style like hamburger panels (not white)
+========================================================= */
+
+.cookie-banner{
+  position: fixed;
+  left: 50%;
+  bottom: 18px;                /* same baseline as CTA */
+
+  transform: translateX(-50%) scale(0.85);  /* was 0.5 => +10% */
+  transform-origin: bottom center;
+
+  width: min(860px, calc(100% - 40px));
+
+  /* Force it above everything (CTA, footer, etc.) */
+  z-index: 2147483500;
+
+  pointer-events: none;
+}
+
+.cookie-inner{
+  pointer-events: auto;
+
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 12px 14px;
+  border-radius: var(--radius);
+
+  /* Glass look like hamburger panel */
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(0,31,63,.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 18px 45px rgba(0,0,0,.18);
+}
+
+.cookie-text{
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
+.cookie-link{
+  color: var(--navy);
+  font-weight: 800;
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+.cookie-link:hover{
+  text-decoration: underline;
+}
+
+.cookie-actions{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.cookie-btn{
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--navy);
+
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(0,31,63,.18);
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.cookie-btn--ghost{
+  background: transparent;
+  border: 1px solid rgba(0,31,63,.18);
+}
+
+.cookie-btn:hover{
+  background: rgba(255,255,255,.26);
+}
+
+.cookie-btn--ghost:hover{
+  background: rgba(255,255,255,.14);
+}
+
+.cookie-btn:focus-visible{
+  outline: 2px solid rgba(0,31,63,.55);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px){
+  .cookie-banner{
+    bottom: 18px;
+    width: calc(100% - 20px);
+    transform: translateX(-50%) scale(0.55); /* keep consistent */
+  }
+
+  .cookie-inner{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cookie-actions{
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* =========================================================
+   CTA BAR (final)
+========================================================= */
+
+.cta-bar{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+
+  width: auto;
+  max-width: calc(100% - 40px);
+
+  z-index: var(--z-cta);
+  padding: 0;
+  pointer-events: none;
+}
+
+.cta-inner{
+  pointer-events: auto;
+  max-width: var(--maxw);
+  margin: 0 auto;
+
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 0;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.cta-btn{
+  flex: 1 1 0;
+  max-width: 240px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding: 9px 11px;
+  border-radius: var(--radius);
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-align: right;
+  text-align: center;
+
+  color: var(--navy);
+  text-decoration: none;
+
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(0,31,63,.18);
+}
+
+.cta-btn--contact{
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.cta-icon{
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius: var(--radius);
+  text-decoration: none;
+
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(0,31,63,.18);
+}
+
+.cta-icon svg{
+  width: 18px;
+  height: 18px;
+  fill: var(--navy);
+  display:block;
+}
+
+.cta-btn:hover,
+.cta-icon:hover{
+  background: rgba(255,255,255,.88);
+}
+
+.cta-btn--contact:hover{
+  background: transparent;
+}
+
+.cta-btn:focus-visible,
+.cta-icon:focus-visible{
+  outline: 2px solid rgba(0,31,63,.55);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px){
+  .cta-inner{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cta-btn{
+    flex: 1 1 calc(50% - 6px);
+    max-width: none;
+  }
+
+  .cta-icon{
+    flex: 1 1 calc(25% - 9px);
+    width: auto;
+    height: 38px;
+  }
+}
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-wrap{
+  position: fixed;
+  left: calc(12px + env(safe-area-inset-left));
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 5;
+
+  margin: 0;
+  display:flex;
+  justify-content: flex-start;
+}
+
+ (max-width: 520px){
+  .back-wrap{
+    left: calc(10px + env(safe-area-inset-left));
+    bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+}
+
+
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+
+  padding: 6px 10px;
+  border-radius: var(--radius);
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  color: #142f3f;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.back-btn:hover{
+  text-decoration: underline;
+}
+
+.back-btn:focus-visible{
+  outline: 2px solid rgba(0,31,63,.55);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   FOOTER (FIXED BOTTOM LEFT)
+   - Works whether footer has .site-footer or is a plain <footer>
+   - Keeps it under Cookie/CTA
+========================================================= */
+
+/* =========================================================
+   FOOTER (FIXED – SAME HEIGHT AS CTA)
+========================================================= */
+
+.site-footer,
+.l-page footer{
+  position: fixed;
+  right: 14px;
+  left: auto;
+
+  /* exakt gleiche Höhe wie CTA */
+  bottom: 18px;
+
+  z-index: 3; /* unter CTA (var(--z-cta)), unter Cookie */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  color: var(--navy);
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+.site-footer a,
+.l-page footer a{
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.l-page footer a:hover{
+  text-decoration: underline;
+}
+
+@media (max-width: 640px){
+  .site-footer,
+  .l-page footer{
+    right: 10px;
+    left: auto;
+    bottom: 18px;
+    font-size: 0.82rem;
+  }
+}
+/* =========================================================
+   Responsive tweaks
+========================================================= */
+
+@media (max-width: 820px){
+  .hamburger{
+    top: 10px;
+    left: 10px;
+  }
+
+  .lang-switch{
+    top: 10px;
+    right: 10px;
+  }
+
+  .menu-panel{
+    top: 56px;
+    left: 10px;
+    max-width: calc(100vw - 20px);
+    max-height: calc(100vh - 70px);
+  }
+
+  
+
+  .hero-logo--landing{
+    height: 27vh;
+    min-height: 210px;
+}
+}
+
+/* --- Hamburger: two-panel menu (main + subpanel) --- */
+.menu-columns{
+  display:flex;
+  gap: 18px;
+  align-items: flex-start;
+  width:max-content;
+  max-width:100%;
+}
+
+.menu-card{
+  background: rgba(255,255,255,.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,31,63,.14);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0,0,0,.18);
+  padding: 18px 18px;
+  width: fit-content;
+  min-width: 0;
+  height: auto;
+  max-width: min(420px, calc(100vw - 56px));
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.menu-card--sub{
+  width:fit-content;
+  min-width:0;
+}
+
+.menu-list{
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list > li{
+  list-style: none;
+}
+
+.menu-link{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-decoration: none;
+  color: #001f3f; /* Navy */
+  font: inherit;
+  /* Match site body typography (slightly smaller than regular text) */
+  font-size: 16px;
+  line-height: 1.15;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.menu-link:hover{
+  opacity: .9;
+}
+
+.menu-arrow{
+  font-size: 20px;
+  line-height: 1;
+}
+
+.menu-back{
+  margin-top: auto;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  padding: 14px 0 0;
+  cursor: pointer;
+}
+
+.menu-sublist{
+  display:flex;
+  flex-direction: column;
+}
+
+.menu-card--sub{
+  display:flex;
+  flex-direction: column;
+}
+
+.menu-panel.is-open .menu-card--sub[hidden]{
+  display:none;
+}
+
+/* When subpanel is open, keep both panels visible.
+   When not open, only main panel is visible (subpanel hidden). */
+
+.menu-card-top{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0,31,63,.12);
+  margin-bottom: 12px;
+}
+
+
+/* Remove the decorative burger icon + divider in MAIN panel only (keep subpanel intact) */
+.menu-card[data-menu-main] .menu-card-top{
+  display:none !important;
+}
+.menu-burger-icon{
+  display:inline-flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu-burger-icon span{
+  display:block;
+  width: 38px;
+  height: 4px;
+  background: #001f3f;
+  border-radius: 999px;
+}
+
+.menu-close{
+  border:0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  color: #001f3f;
+  line-height: 1;
+}
+
+/* =========================================================
+   MOBILE OVERRIDES (<=520px)
+   Fixes: subpanel clipping/behind-page, no-scroll, tap-to-close
+========================================================= */
+@media (max-width: 520px){
+
+  /* Menu overlay should cover viewport; allow backdrop click outside cards */
+  .menu-panel{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width:100%;
+    max-width:none;
+    height:auto;
+    max-height:none;
+
+    padding: 0;
+    overflow: hidden;
+
+    /* keep the slide-in behavior */
+    transform: translateX(-105%);
+  }
+
+  .menu-panel.is-open{
+    transform: translateX(0);
+  }
+
+  /* Let clicks outside cards go to the backdrop (for close-on-tap) */
+  .menu-panel{
+    pointer-events: none;
+  }
+  .menu-panel .menu-card,
+  .menu-panel .menu-subtoggle,
+  .menu-panel a,
+  .menu-panel button{
+    pointer-events: auto;
+  }
+
+  /* Inner padding below fixed buttons */
+  .menu-panel-inner{
+    padding: 56px 10px 12px;
+  }
+
+  /* Panels stack and scroll correctly */
+  .menu-columns{
+    position: relative;
+    gap: 12px;
+  }
+
+  .menu-card{
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    max-height: calc(100vh - 86px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  /* Subpanel becomes an overlay that slides in horizontally */
+  .menu-card--sub{
+    position: absolute;
+    inset: 0;
+
+    transform: translate3d(110%,0,0);
+    transition: transform var(--transition-fast);
+    will-change: transform;
+
+    max-height: calc(100vh - 86px);
+    overflow: hidden;
+  }
+
+  .menu-panel.is-subopen .menu-card--sub{
+    transform: translate3d(0,0,0);
+  }
+
+  /* Subpanel internal layout: back button top-right + scrollable list */
+  .menu-sublist{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .menu-sublist > ul{
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    padding-bottom: 16px; /* keep last item visible */
+  }
+
+  .menu-back{
+    order: -1;
+    align-self: flex-end;
+    width: auto;
+    margin: 0;
+    padding: 6px 0 10px;
+    text-align: right;
+  }
+}
+
+
+/* Center hero section column */
+.hero{
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Unified spacing: Landing + Main Index */
+.hero-logo--landing + h1,
+.hero-logo--landing ~ h1 {
+    margin-top: 6px;
+}
+
+
+/* === CTA Mobile Offset +10mm (Fix) === */
+@media (max-width: 820px){
+  .ctaBar{
+    bottom: calc(22px + 10mm);
+  }
+}
+
+
+/* === Content Bottom Spacing Fix (Text runs too low) === */
+.l-main{
+  padding-bottom: 140px;
+}
+
+
+
+.menu-label-private-wrap{
+  list-style:none;
+  margin-bottom:10px;
+  display:inline-block;
+  align-self:flex-start;
+  width:fit-content;
+}
+.menu-label-private{
+  font-size:.8rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:#001f3f;
+  opacity:.75;
+  margin-bottom:8px;
+}
+.menu-divider-gold{width:100%;height:2px;background:#c6a25a;margin:8px 0 18px 0;}
+
+
+/* === Public menu headline and submenu polish === */
+.menu-label-private{
+  color:#001f3f;
+}
+
+.menu-card[data-menu-main] .menu-list{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.menu-card[data-menu-main] .menu-link,
+.menu-card--sub .menu-link{
+  font-weight: 400;
+  color:var(--navy);
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+.menu-card--sub .menu-list{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+@media (max-width: 520px){
+  .menu-card--sub .menu-link{
+    white-space:normal;
+  }
+}
+
+/* =========================================================
+   CLEAN GLOBAL TEXT FLOW
+   Single source of truth for readable content pages
+========================================================= */
+
+:root{
+  --reading-max: 900px;
+  --reading-shift-desktop: 1cm;
+  --reading-shift-tablet: .5cm;
+  --text-divider: rgba(255,255,255,.18);
+}
+
+.l-main.page-wrapper.prose-page{
+  max-width: var(--reading-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width:1080px){
+  .l-main.page-wrapper.prose-page{
+    position: relative;
+    left: calc(-1 * var(--reading-shift-desktop));
+  }
+}
+
+@media (min-width:821px) and (max-width:1079px){
+  .l-main.page-wrapper.prose-page{
+    position: relative;
+    left: calc(-1 * var(--reading-shift-tablet));
+  }
+}
+
+@media (max-width:820px){
+  .l-main.page-wrapper.prose-page{
+    position: static;
+    left: auto;
+    max-width: 100%;
+  }
+}
+
+/* Remove all card/glass styling from content flow */
+.l-main.page-wrapper.prose-page > .text-intro,
+.l-main.page-wrapper.prose-page > .text-flow,
+.l-main.page-wrapper.prose-page > .content,
+.l-main.page-wrapper.prose-page > .legal-page,
+.l-main.page-wrapper.prose-page > .privacy-page,
+.l-main.page-wrapper.prose-page > .faq-wrap,
+.l-main.page-wrapper.prose-page > .contact-premium,
+.l-main.page-wrapper.prose-page > section,
+.l-main.page-wrapper.prose-page > div{
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.l-main.page-wrapper.prose-page > .text-intro,
+.l-main.page-wrapper.prose-page > .text-flow,
+.l-main.page-wrapper.prose-page > .content,
+.l-main.page-wrapper.prose-page > .legal-page,
+.l-main.page-wrapper.prose-page > .privacy-page,
+.l-main.page-wrapper.prose-page > .faq-wrap,
+.l-main.page-wrapper.prose-page > .contact-premium{
+  width: 100%;
+  padding: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: none !important;
+}
+
+.prose-page .text-intro,
+.prose-page .content,
+.prose-page .legal-page,
+.prose-page .privacy-page,
+.prose-page .faq-wrap,
+.prose-page .contact-premium{
+  margin: 0;
+}
+
+.prose-page .text-flow{
+  margin: 0;
+  padding: 0;
+}
+
+.prose-page .text-intro + .text-flow,
+.prose-page .text-flow + .text-flow,
+.prose-page .content > h2:not(:first-child),
+.prose-page .legal-page > h2:not(:first-child),
+.prose-page .privacy-page > h2:not(:first-child){
+  margin-top: 2.15rem;
+  padding-top: 1.9rem;
+  border-top: 1px solid var(--text-divider);
+}
+
+.prose-page h1{
+  margin: 0 0 1rem 0;
+}
+
+.prose-page .lead{
+  margin: 0 0 1rem 0;
+}
+
+.prose-page h2{
+  margin: 0 0 .95rem 0;
+}
+
+.prose-page h3{
+  margin: 1.6rem 0 .7rem 0;
+}
+
+.prose-page p,
+.prose-page ul,
+.prose-page ol,
+.prose-page blockquote,
+.prose-page .quote{
+  margin: 0 0 1rem 0;
+}
+
+.prose-page ul.sectionList,
+.prose-page ol.sectionList,
+.prose-page ul:not([class]),
+.prose-page ol:not([class]){
+  padding-left: 1.35rem;
+  list-style-position: outside;
+}
+
+.prose-page li{
+  margin: 0 0 .45rem 0;
+}
+
+.prose-page li + li{
+  margin-top: .35rem;
+}
+
+@media (max-width:820px){
+  .prose-page .text-intro + .text-flow,
+  .prose-page .text-flow + .text-flow,
+  .prose-page .content > h2:not(:first-child),
+  .prose-page .legal-page > h2:not(:first-child),
+  .prose-page .privacy-page > h2:not(:first-child){
+    margin-top: 1.7rem;
+    padding-top: 1.45rem;
+  }
+
+  .prose-page h3{
+    margin-top: 1.3rem;
+  }
+}
+
+
+/* FINAL TEXT FLOW OVERRIDE */
+.l-main.page-wrapper.prose-page{max-width:min(1120px,calc(100% - 56px));margin-inline:auto;padding-inline:0;}
+@media (min-width: 960px){.l-main.page-wrapper.prose-page{transform:translateX(-1cm);}}
+@media (max-width: 959px){.l-main.page-wrapper.prose-page{transform:none;max-width:calc(100% - 32px);}}
+.prose-page > .text-intro,
+.prose-page > .text-flow{background:transparent !important;backdrop-filter:none !important;box-shadow:none !important;border:0 !important;padding:0 !important;margin:0 0 34px 0 !important;max-width:760px;}
+.prose-page .text-intro h1{margin:0 0 20px 0;}
+.prose-page .text-flow h2{margin:38px 0 14px 0;padding-top:0;border-top:0;}
+.prose-page .text-flow h3{margin:20px 0 10px 0;}
+.prose-page p{margin:0 0 16px 0;}
+.prose-page ul{margin:10px 0 18px 1.25rem;padding-left:1.1rem;list-style:disc;}
+.prose-page li{margin:0 0 8px 0;}
+
+
+/* FINAL reading column fix: keep text column narrow and shifted left on desktop */
+.l-main.page-wrapper.prose-page{
+  max-width: min(1120px, calc(100% - 56px)) !important;
+  margin-inline: auto !important;
+  padding-inline: 0 !important;
+  transform: none !important;
+}
+.l-main.page-wrapper.prose-page > .text-intro,
+.l-main.page-wrapper.prose-page > .text-flow,
+.l-main.page-wrapper.prose-page > .content,
+.l-main.page-wrapper.prose-page > .legal-page,
+.l-main.page-wrapper.prose-page > .privacy-page,
+.l-main.page-wrapper.prose-page > .faq-wrap,
+.l-main.page-wrapper.prose-page > .contact-premium,
+.l-main.page-wrapper.prose-page > section,
+.l-main.page-wrapper.prose-page > div{
+  width: 100% !important;
+  max-width: 760px !important;
+  margin-right: auto !important;
+  margin-left: calc((100% - 760px) / 2 - 1cm) !important;
+}
+@media (max-width: 959px){
+  .l-main.page-wrapper.prose-page{
+    max-width: calc(100% - 32px) !important;
+  }
+  .l-main.page-wrapper.prose-page > .text-intro,
+  .l-main.page-wrapper.prose-page > .text-flow,
+  .l-main.page-wrapper.prose-page > .content,
+  .l-main.page-wrapper.prose-page > .legal-page,
+  .l-main.page-wrapper.prose-page > .privacy-page,
+  .l-main.page-wrapper.prose-page > .faq-wrap,
+  .l-main.page-wrapper.prose-page > .contact-premium,
+  .l-main.page-wrapper.prose-page > section,
+  .l-main.page-wrapper.prose-page > div{
+    max-width: 100% !important;
+    margin-left: 0 !important;
+  }
+}

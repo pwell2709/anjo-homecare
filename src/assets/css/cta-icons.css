@@ -1,0 +1,67 @@
+/* src/assets/css/cta-icons.css */
+/* Premium Social Buttons for CTA (isolated, overrides safely) */
+
+.ctaSocial{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* Base icon button */
+.ctaSocial .cta-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.10);
+  box-shadow: 0 10px 26px rgba(0,0,0,.18);
+  transition: transform .12s ease, opacity .12s ease, filter .12s ease;
+  text-decoration:none;
+}
+
+.ctaSocial .cta-icon:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+}
+
+.ctaSocial .cta-icon:active{
+  transform: translateY(0);
+  opacity:.96;
+}
+
+.ctaSocial .cta-icon svg{
+  width:22px;
+  height:22px;
+  display:block;
+}
+
+/* Brand backgrounds */
+.ctaSocial .cta-icon.instagram{
+  background: radial-gradient(circle at 30% 107%,
+    #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  border:none;
+}
+
+.ctaSocial .cta-icon.facebook{
+  background:#1877F2;
+  border:none;
+}
+
+.ctaSocial .cta-icon.whatsapp{
+  background:#25D366;
+  border:none;
+}
+
+/* Accessibility focus */
+.ctaSocial .cta-icon:focus-visible{
+  outline:2px solid rgba(0,31,63,.55);
+  outline-offset:3px;
+}
+
+/* If your CTA bar sits on bright background, ensure contrast is good */
+.ctaSocial .cta-icon svg path{
+  fill:#fff;
+}

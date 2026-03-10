@@ -1,0 +1,54 @@
+{# cookie.njk (global) #}
+
+{% set currentLang = pageLang or lang or "" %}
+{% if not currentLang and page.url and (page.url | slice(0,4)) == "/de/" %}{% set currentLang = "de" %}{% endif %}
+{% if not currentLang and page.url and (page.url | slice(0,4)) == "/en/" %}{% set currentLang = "en" %}{% endif %}
+{% if not currentLang and page.url and (page.url | slice(0,4)) == "/fr/" %}{% set currentLang = "fr" %}{% endif %}
+{% if not currentLang and page.url and (page.url | slice(0,4)) == "/pt/" %}{% set currentLang = "pt" %}{% endif %}
+{% if not currentLang %}{% set currentLang = "en" %}{% endif %}
+{% set privacyUrl = "/" ~ currentLang ~ "/privacy/" %}
+
+{% set t = {
+  de: {
+    text: "Wir verwenden Cookies, um die Website zuverlässig zu betreiben und die Nutzung zu verbessern. Du kannst zustimmen oder ablehnen. Details findest du in der Datenschutzerklärung.",
+    accept: "Akzeptieren",
+    decline: "Ablehnen",
+    more: "Datenschutz"
+  },
+  en: {
+    text: "We use cookies to operate the website reliably and improve usage. You can accept or decline. Details are in the privacy policy.",
+    accept: "Accept",
+    decline: "Decline",
+    more: "Privacy"
+  },
+  fr: {
+    text: "Nous utilisons des cookies pour faire fonctionner le site de manière fiable et améliorer son utilisation. Vous pouvez accepter ou refuser. Détails dans la politique de confidentialité.",
+    accept: "Accepter",
+    decline: "Refuser",
+    more: "Confidentialité"
+  },
+  pt: {
+    text: "Usamos cookies para operar o site de forma fiável e melhorar a utilização. Pode aceitar ou recusar. Detalhes na política de privacidade.",
+    accept: "Aceitar",
+    decline: "Recusar",
+    more: "Privacidade"
+  }
+} %}
+
+{% set L = t[currentLang] or t.en %}
+
+<section class="cookie-banner" data-cookie-banner aria-label="Cookie banner" hidden>
+  <div class="cookie-inner">
+    <div class="cookie-copy">
+      <div class="cookie-text">
+        {{ L.text }}
+        <a class="cookie-link" href="{{ privacyUrl }}">{{ L.more }}</a>
+      </div>
+    </div>
+
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-btn--ghost" type="button" data-cookie-decline>{{ L.decline }}</button>
+      <button class="cookie-btn" type="button" data-cookie-accept>{{ L.accept }}</button>
+    </div>
+  </div>
+</section>

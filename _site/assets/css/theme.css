@@ -1,0 +1,22 @@
+:root{
+  --navy:#001f3f;
+  --beige:#f3efe6;
+
+  --text:#142f3f;
+  --muted:#475569;
+
+  --radius:16px;
+  --shadow: 0 10px 24px rgba(0,0,0,.12);
+
+  --gap:16px;
+  --pad:16px;
+
+  --maxw:1100px;
+
+  /* System tokens */
+  --z-menu:1000;
+  --z-backdrop:999;
+  --z-cta:1100;
+
+  --transition-fast:.22s ease;
+}

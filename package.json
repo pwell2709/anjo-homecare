@@ -1,0 +1,22 @@
+{
+  "name": "amjo_web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy",
+    "start": "npx @11ty/eleventy --serve",
+    "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\"",
+    "build:clean": "npm run clean && npm run build",
+    "check:output": "node scripts/check-output.mjs",
+    "build:guard": "npm run build:clean && npm run check:output"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}

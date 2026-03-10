@@ -1,0 +1,64 @@
+{# src/components/cta.njk #}
+
+{% if pageLang %}
+  {% set currentPageLang = pageLang %}
+{% elif lang %}
+  {% set currentPageLang = lang %}
+{% else %}
+  {% set currentPageLang = "de" %}
+  {% if page.url and (page.url | slice(0,4)) == "/en/" %}{% set currentPageLang = "en" %}{% endif %}
+  {% if page.url and (page.url | slice(0,4)) == "/fr/" %}{% set currentPageLang = "fr" %}{% endif %}
+  {% if page.url and (page.url | slice(0,4)) == "/pt/" %}{% set currentPageLang = "pt" %}{% endif %}
+{% endif %}
+
+{% set contactUrl = "/" + currentPageLang + "/contact/" %}
+
+{# Restrict service dropdown when user comes from region pages except the 3 cleaning main areas #}
+{% set restrict = false %}
+{% if page.url %}
+  {% set localizedAreaPrefixes = {"de":"/de/orte/","en":"/en/locations/","fr":"/fr/lieux/","pt":"/pt/locais/"} %}
+  {% set areaPrefix = localizedAreaPrefixes[currentPageLang] %}
+  {% if page.url.indexOf(areaPrefix) == 0 %}
+    {% set slugPart = page.url | replace(areaPrefix, "") %}
+    {% set slug = slugPart.split("/")[0] %}
+    {% if slug and slug != "ponta-do-sol" and slug != "calheta" and slug != "ribeira-brava" %}
+      {% set restrict = true %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+{% if restrict %}
+  {% if contactUrl.indexOf("?") > -1 %}
+    {% set contactUrl = contactUrl + "&src=orte" %}
+  {% else %}
+    {% set contactUrl = contactUrl + "?src=orte" %}
+  {% endif %}
+{% endif %}
+
+{% set contactLabel = "Kontaktformular" %}
+{% if currentPageLang == "en" %}{% set contactLabel = "Contact form" %}{% endif %}
+{% if currentPageLang == "fr" %}{% set contactLabel = "Formulaire" %}{% endif %}
+{% if currentPageLang == "pt" %}{% set contactLabel = "Formulário" %}{% endif %}
+
+<div class="ctaBar">
+  <div class="ctaInner ctaInner--two">
+
+    {% if not page.url or page.url != ("/" + currentPageLang + "/contact/") %}
+      <a class="ctaBtn" href="{{ contactUrl }}">{{ contactLabel }}</a>
+    {% endif %}
+
+    <a class="ctaBtn ctaBtn--wa"
+       href="https://wa.me/351926669223"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="WhatsApp">
+      <span class="ctaBtnIcon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M12.04 2C6.58 2 2.15 6.32 2.15 11.65c0 1.95.6 3.76 1.63 5.27L2 22l5.27-1.7c1.45.78 3.11 1.22 4.77 1.22 5.46 0 9.89-4.32 9.89-9.65C21.93 6.32 17.5 2 12.04 2zm0 17.74c-1.5 0-2.97-.4-4.25-1.17l-.3-.18-3.13 1.01 1.02-2.97-.2-.3a7.61 7.61 0 01-1.26-4.28c0-4.2 3.52-7.62 7.84-7.62 4.33 0 7.85 3.42 7.85 7.62s-3.52 7.61-7.85 7.61zm4.56-5.7c-.25-.13-1.48-.72-1.7-.8-.22-.08-.38-.13-.54.13-.16.25-.62.8-.77.96-.14.16-.28.19-.53.06-.25-.13-1.05-.38-2-1.2-.75-.64-1.25-1.42-1.4-1.67-.14-.25-.02-.38.1-.5.11-.11.25-.29.38-.43.13-.14.17-.25.25-.41.08-.16.04-.32-.02-.45-.06-.13-.54-1.28-.74-1.75-.2-.46-.4-.38-.54-.39h-.46c-.16 0-.4.06-.61.29-.21.23-.8.78-.8 1.9 0 1.12.83 2.2.95 2.35.11.16 1.63 2.57 3.96 3.5.55.22.98.35 1.31.45.55.17 1.06.15 1.46.09.45-.07 1.48-.6 1.69-1.18.21-.58.21-1.07.15-1.17-.06-.1-.22-.16-.47-.29z"/>
+        </svg>
+      </span>
+      <span class="ctaBtnText">WhatsApp</span>
+    </a>
+
+  </div>
+</div>
