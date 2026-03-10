@@ -32,10 +32,12 @@
               <div class="menu-divider-gold" aria-hidden="true"></div>
             </li>
             {% for item in items %}
-            <li>
-              {% set itemIsCurrent = (navCurrentUrl == item.url) or (navCurrentUrl == item.url ~ "/") or (navCurrentUrl ~ "/" == item.url) %}
-              <a class="menu-link{% if itemIsCurrent %} is-current{% endif %}" href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}{% if itemIsCurrent and not item.external %} aria-current="page"{% endif %}>{{ item.label }}</a>
-            </li>
+            {% set itemIsCurrent = (navCurrentUrl == item.url) or (navCurrentUrl == item.url ~ "/") or (navCurrentUrl ~ "/" == item.url) %}
+{% if not itemIsCurrent %}
+<li>
+  <a class="menu-link" href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.label }}</a>
+</li>
+{% endif %}
             {% endfor %}
           </ul>
         </section>

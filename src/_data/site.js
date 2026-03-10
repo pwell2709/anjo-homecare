@@ -51,7 +51,7 @@ module.exports = {
       main: [
         { label: "Accueil", url: "/fr/" },
         { label: "Luxe Gestion de Propriété", url: "/fr/home/" },
-        { label: "Services Luxe", url: "/fr/services/" },
+        { label: "Luxe Services", url: "/fr/services/" },
         { label: "Contrôle Tempête", url: "/fr/check/" },
         { label: "AL-Alojamento", url: "/fr/landing/nettoyage-al/" },
         { label: "FAQ", url: "/fr/faq/" },
@@ -70,7 +70,7 @@ module.exports = {
       main: [
         { label: "Início", url: "/pt/" },
         { label: "Luxo Gestão de Propriedade", url: "/pt/home/" },
-        { label: "Serviços de Luxo", url: "/pt/services/" },
+        { label: "Luxo Serviços", url: "/pt/services/" },
         { label: "Verificação de Tempestade", url: "/pt/check/" },
         { label: "AL-Alojamento", url: "/pt/landing/limpeza-al/" },
         { label: "FAQ", url: "/pt/faq/" },
