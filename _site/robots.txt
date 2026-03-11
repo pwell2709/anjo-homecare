@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://anjo-cleaning.com/sitemap.xml
