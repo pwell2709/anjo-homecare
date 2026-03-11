@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx @11ty/eleventy --serve",
-    "build": "npx @11ty/eleventy",
+    "build": "npx @11ty/eleventy && node build-guard.js",
     "start": "npx @11ty/eleventy --serve",
     "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\"",
     "build:clean": "npm run clean && npm run build",
@@ -20,3 +20,4 @@
     "@11ty/eleventy": "^3.1.2"
   }
 }
+
