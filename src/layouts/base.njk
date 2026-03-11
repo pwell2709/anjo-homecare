@@ -1,4 +1,4 @@
-
+﻿
 <!doctype html>
 {% set pageLang = lang or '' %}
 {% if not pageLang and page.url and (page.url | slice(0,4)) == '/de/' %}{% set pageLang = 'de' %}{% endif %}
@@ -190,7 +190,7 @@
   {% if page.url %}
     {% set isMainIndex = page.url == ("/" + pageLang + "/") %}
     {% set isContact = page.url.indexOf("/" + pageLang + "/contact/") == 0 %}
-    {% set localizedAlRoot = {"de":"/de/landing/al-madeira/","en":"/en/landing/cleaning-for-al/","fr":"/fr/landing/nettoyage-al/","pt":"/pt/landing/limpeza-al/"} %}
+    {% set localizedAlRoot = {"de":"/de/landing/al-madeira/","en":"/en/landinging-for-al/","fr":"/fr/landing/nettoyage-al/","pt":"/pt/landing/limpeza-al/"} %}
     {% set isAl = page.url.indexOf("/" + pageLang + "/al/") == 0 or page.url == localizedAlRoot[pageLang] %}
     {% set isCheck = page.url.indexOf("/" + pageLang + "/check/") == 0 %}
     {% set localizedAreaRoots = {"de":"/de/orte/","en":"/en/locations/","fr":"/fr/lieux/","pt":"/pt/locais/"} %}
@@ -206,3 +206,4 @@
   <script src="/assets/js/cookie.js"></script>
 </body>
 </html>
+

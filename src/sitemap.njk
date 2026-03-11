@@ -1,4 +1,4 @@
----
+﻿---
 permalink: /sitemap.xml
 layout: null
 eleventyExcludeFromCollections: true
@@ -14,7 +14,7 @@ eleventyExcludeFromCollections: true
         and p.data.sitemap != false 
         and (p.data.eleventyExcludeFromCollections != true or p.url == '/sitemap.xml') 
         and p.url != '/sitemap.xml'
-        and not p.url.includes('/al/clean/')
+        and not p.url.includes('/al/')
   -%}
 
   <url>
@@ -39,3 +39,4 @@ eleventyExcludeFromCollections: true
 {%- endfor %}
 
 </urlset>
+
