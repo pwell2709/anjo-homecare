@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Host: anjo-cleaning.com
 Sitemap: https://anjo-cleaning.com/sitemap.xml
