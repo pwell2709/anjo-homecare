@@ -1,18 +1,19 @@
----
+﻿---
 layout: base.njk
 lang: de
 title: "Kontakt | Anjo Cleaning Madeira"
-description: "Kontaktieren Sie Anjo Cleaning Madeira für Turnover-Reinigung (Alojamento Local/Airbnb), Privatresidenzen und Gewerbe. Klare Prozesse, verlässliche Qualität."
+description: "Kontaktieren Sie Anjo Cleaning Madeira fÃ¼r Turnover-Reinigung (Alojamento Local/Airbnb), Privatresidenzen und Gewerbe. Klare Prozesse, verlÃ¤ssliche QualitÃ¤t."
 permalink: /de/contact/
+
 langLinks:
-  de: /de/contact/
-  en: /en/contact/
-  fr: /fr/contact/
-  pt: /pt/contact/
+  de: /de/de/contact/
+  en: /en/de/contact/
+  fr: /fr/de/contact/
+  pt: /pt/de/contact/
 ---
 
 <style>
-/* Premium Contact – scoped */
+/* Premium Contact â€“ scoped */
 /* CONTACT_LOCK: keep contact form identical to live. */
 .contact-premium{
   max-width: 980px;
@@ -261,7 +262,7 @@ langLinks:
   </div>
 
   <p class="subline" id="intro">
-    Schreib uns für Verfügbarkeit, Preise oder ein maßgeschneidertes Reinigungskonzept. Wir melden uns so schnell wie möglich.
+    Schreib uns fÃ¼r VerfÃ¼gbarkeit, Preise oder ein maÃŸgeschneidertes Reinigungskonzept. Wir melden uns so schnell wie mÃ¶glich.
   </p>
 
   <div class="card">
@@ -290,7 +291,7 @@ langLinks:
       <div class="grid two" style="margin-top:12px;">
         <div>
           <label for="phone">Telefon (optional)</label>
-          <input class="field" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+351 …"/>
+          <input class="field" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+351 â€¦"/>
         </div>
 
         <div>
@@ -308,13 +309,13 @@ langLinks:
               aria-haspopup="listbox"
               aria-expanded="false"
             >
-              <span class="value"><span class="placeholder">Auswählen…</span></span>
+              <span class="value"><span class="placeholder">AuswÃ¤hlenâ€¦</span></span>
               <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
 
-            <div class="listbox" role="listbox" aria-label="Leistung auswählen">
+            <div class="listbox" role="listbox" aria-label="Leistung auswÃ¤hlen">
               <button type="button" class="option option--spacer" aria-hidden="true" tabindex="-1"></button>
               <button type="button" class="option" role="option" data-value="house_sitting" aria-selected="false">Property Care Luxury</button>
               <button type="button" class="option" role="option" data-value="services_luxury" aria-selected="false">Services Luxury</button>
@@ -328,13 +329,13 @@ langLinks:
 
       <div style="margin-top:12px;">
         <label for="message">Nachricht <span class="req">*</span></label>
-        <textarea class="field" id="message" name="message" placeholder="Worum geht’s? (Ort, Größe, Zeitraum, besondere Wünsche)…" required=""></textarea>
+        <textarea class="field" id="message" name="message" placeholder="Worum gehtâ€™s? (Ort, GrÃ¶ÃŸe, Zeitraum, besondere WÃ¼nsche)â€¦" required=""></textarea>
       </div>
 
       <div class="checkwrap">
         <input id="consent" name="consent" type="checkbox" required=""/>
         <div class="fineprint">
-          Ich habe die <a class="mutedLink" href="/de/privacy/">Datenschutzerklärung</a> gelesen und zur Kenntnis genommen. <span class="req">*</span>
+          Ich habe die <a class="mutedLink" href="/de/privacy/">DatenschutzerklÃ¤rung</a> gelesen und zur Kenntnis genommen. <span class="req">*</span>
         </div>
       </div>
 
@@ -344,9 +345,9 @@ langLinks:
       </div>
 
       <div class="fineprint" id="processingText">
-        <b>Verarbeitung:</b> Wir verarbeiten deine Angaben zur Bearbeitung deiner Anfrage und für vorvertragliche Maßnahmen (Art. 6(1)(b) DSGVO).
-        <b>Empfänger:</b> keine Weitergabe an Dritte; Versand per Server-Mail.
-        <b>Rechte:</b> Auskunft/Löschung/Widerspruch etc. siehe <a class="mutedLink" href="/de/privacy/">Datenschutzerklärung</a>.
+        <b>Verarbeitung:</b> Wir verarbeiten deine Angaben zur Bearbeitung deiner Anfrage und fÃ¼r vorvertragliche MaÃŸnahmen (Art. 6(1)(b) DSGVO).
+        <b>EmpfÃ¤nger:</b> keine Weitergabe an Dritte; Versand per Server-Mail.
+        <b>Rechte:</b> Auskunft/LÃ¶schung/Widerspruch etc. siehe <a class="mutedLink" href="/de/privacy/">DatenschutzerklÃ¤rung</a>.
       </div>
 
       <div class="actions">
@@ -408,7 +409,7 @@ langLinks:
     btn.setAttribute("aria-busy", isBusy ? "true" : "false");
     if(isBusy){
       btn.dataset.label = btn.textContent;
-      btn.textContent = "Wird gesendet…";
+      btn.textContent = "Wird gesendetâ€¦";
     }else{
       btn.textContent = btn.dataset.label || "Senden";
     }
@@ -449,7 +450,7 @@ langLinks:
       hiddenService.setAttribute("value", value || "");
     }
     if(valueEl){
-      valueEl.innerHTML = label ? escapeHtml(label) : '<span class="placeholder">Auswählen…</span>';
+      valueEl.innerHTML = label ? escapeHtml(label) : '<span class="placeholder">AuswÃ¤hlenâ€¦</span>';
     }
     options.forEach(o=>{
       o.setAttribute("aria-selected", o.dataset.value === value ? "true" : "false");
@@ -517,10 +518,10 @@ langLinks:
     const consent = !!document.getElementById("consent")?.checked;
 
     if(!name || !email || !service || !message){
-      return showErr("Bitte fülle alle Pflichtfelder (*) aus.");
+      return showErr("Bitte fÃ¼lle alle Pflichtfelder (*) aus.");
     }
     if(!consent){
-      return showErr("Bitte bestätige die Datenschutzhinweise (Checkbox).");
+      return showErr("Bitte bestÃ¤tige die Datenschutzhinweise (Checkbox).");
     }
 
     setBusy(true);
@@ -564,3 +565,4 @@ langLinks:
   });
 })();
 </script>
+

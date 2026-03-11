@@ -1,16 +1,8 @@
----
-layout: "base.njk"
-lang: "en"
-title: "AL Cleaning Madeira | Premium rental support"
-description: "Cleaning for Alojamento Local in Madeira with structured preparation, premium standards and reliable execution between departures and arrivals."
-permalink: "/en/landing/cleaning-for-al/"
-ogImage: "/assets/images/luxury-villa-madeira-ocean-view.jpg"
-langLinks:
-  en: "/en/landing/cleaning-for-al/"
-  de: "/de/landing/al-madeira/"
-  fr: "/fr/landing/nettoyage-al/"
-  pt: "/pt/landing/limpeza-al/"
----
+﻿
+        param($m)
+        $front = $m.Groups[1].Value.Trim()
+        return "---`n$front`n$newBlock`n---"
+    
 
 <section class="text-intro">
   <div class="hero-logo hero-logo--landing">
@@ -37,3 +29,4 @@ langLinks:
 </ul></section>
 <section class="text-flow"><h2>Clear scope of service</h2><p>The focus of our Alojamento Local service is the reliable cleaning and preparation of the property between stays.</p><p>We do not provide key handovers, guest management or property management.</p></section>
 <section class="text-flow"><h2>Complement to Property Care</h2><p>Many owners use their property as a second home and occasionally welcome guests. In these situations, rental cleaning complements our property supervision for private residences in Madeira.</p></section>
+
