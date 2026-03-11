@@ -107,11 +107,16 @@
       const targetLang = a.getAttribute("data-lang");
       if (!targetLang) return;
 
-      const explicit = a.getAttribute("data-href");
+      const explicit = a.getAttribute("data-href") || a.getAttribute("href");
       let target;
 
-      if (explicit && explicit.startsWith("/") && explicit !== `/${targetLang}/` && explicit !== `/${targetLang}`) {
-        target = sanitizePath(explicit);
+      if (explicit) {
+        try {
+          const u = new URL(explicit, window.location.origin);
+          target = sanitizePath(u.pathname + u.search + u.hash);
+        } catch (e) {
+          target = sanitizePath(explicit);
+        }
       } else {
         target = buildHref(targetLang);
       }
@@ -125,5 +130,6 @@
   apply();
   document.addEventListener("DOMContentLoaded", apply);
 })();
+
 
 
