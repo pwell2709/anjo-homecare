@@ -1,4 +1,4 @@
-ï»¿
+
 <!doctype html>
 {% set pageLang = lang or '' %}
 {% if not pageLang and page.url and (page.url | slice(0,4)) == '/de/' %}{% set pageLang = 'de' %}{% endif %}
@@ -20,28 +20,28 @@
   {% if not metaKeywords %}
     {% if pageLang == 'de' %}
       {% if '/services/' in route %}{% set metaKeywords = 'Services Luxus Madeira, Luxusreinigung Madeira, Premium Reinigung Madeira, Property Care Madeira, private Residenzen Madeira' %}
-      {% elif '/landing/' in route or '/al/' in route %}{% set metaKeywords = 'Alojamento Local Madeira, Reinigung Ferienimmobilie Madeira, AL Reinigung Madeira, Premium Cleaning Madeira, Check-in Reinigung Madeira' %}
+      {% elif '/landing/' in route %}{% set metaKeywords = 'Alojamento Local Madeira, Reinigung Ferienimmobilie Madeira, AL Reinigung Madeira, Premium Cleaning Madeira, Check-in Reinigung Madeira' %}
       {% elif '/check/' in route %}{% set metaKeywords = 'Storm Check Madeira, Unwetterkontrolle Madeira, Objektkontrolle Madeira, Property Care Madeira, Luxusimmobilie Madeira' %}
       {% elif '/orte/' in route %}{% set metaKeywords = 'Luxury Property Care Madeira, Property Care Madeira, Luxusimmobilie Madeira, Villa Betreuung Madeira, Zweitwohnsitz Madeira' %}
       {% else %}{% set metaKeywords = 'Luxury Property Care Madeira, Property Care Madeira, Luxusimmobilie Madeira, Villa Betreuung Madeira, Property Care Madeira' %}
       {% endif %}
     {% elif pageLang == 'fr' %}
-      {% if '/services/' in route %}{% set metaKeywords = 'services luxe MadÃ¨re, nettoyage luxe MadÃ¨re, nettoyage premium MadÃ¨re, Property Care MadÃ¨re, rÃ©sidences privÃ©es MadÃ¨re' %}
-      {% elif '/landing/' in route or '/al/' in route %}{% set metaKeywords = 'Alojamento Local MadÃ¨re, nettoyage location MadÃ¨re, nettoyage AL MadÃ¨re, premium cleaning MadÃ¨re, prÃ©paration arrivÃ©e MadÃ¨re' %}
-      {% elif '/check/' in route %}{% set metaKeywords = 'storm check MadÃ¨re, contrÃ´le tempÃªte MadÃ¨re, contrÃ´le propriÃ©tÃ© MadÃ¨re, Property Care MadÃ¨re, villa luxe MadÃ¨re' %}
-      {% elif '/lieux/' in route %}{% set metaKeywords = 'luxury Property Care MadÃ¨re, Property Care MadÃ¨re, propriÃ©tÃ© luxe MadÃ¨re, entretien villa MadÃ¨re, rÃ©sidence secondaire MadÃ¨re' %}
-      {% else %}{% set metaKeywords = 'luxury Property Care MadÃ¨re, Property Care MadÃ¨re, propriÃ©tÃ© luxe MadÃ¨re, entretien villa MadÃ¨re, property care MadÃ¨re' %}
+      {% if '/services/' in route %}{% set metaKeywords = 'services luxe Madère, nettoyage luxe Madère, nettoyage premium Madère, Property Care Madère, résidences privées Madère' %}
+      {% elif '/landing/' in route %}{% set metaKeywords = 'Alojamento Local Madère, nettoyage location Madère, nettoyage AL Madère, premium cleaning Madère, préparation arrivée Madère' %}
+      {% elif '/check/' in route %}{% set metaKeywords = 'storm check Madère, contrôle tempête Madère, contrôle propriété Madère, Property Care Madère, villa luxe Madère' %}
+      {% elif '/lieux/' in route %}{% set metaKeywords = 'luxury Property Care Madère, Property Care Madère, propriété luxe Madère, entretien villa Madère, résidence secondaire Madère' %}
+      {% else %}{% set metaKeywords = 'luxury Property Care Madère, Property Care Madère, propriété luxe Madère, entretien villa Madère, property care Madère' %}
       {% endif %}
     {% elif pageLang == 'pt' %}
-      {% if '/services/' in route %}{% set metaKeywords = 'serviÃ§os luxo Madeira, limpeza luxo Madeira, limpeza premium Madeira, Property Care Madeira, residÃªncias privadas Madeira' %}
-      {% elif '/landing/' in route or '/al/' in route %}{% set metaKeywords = 'Alojamento Local Madeira, limpeza alojamento Madeira, limpeza AL Madeira, premium cleaning Madeira, preparaÃ§Ã£o de chegada Madeira' %}
-      {% elif '/check/' in route %}{% set metaKeywords = 'storm check Madeira, verificaÃ§Ã£o tempestade Madeira, controlo imÃ³vel Madeira, Property Care Madeira, villa luxo Madeira' %}
-      {% elif '/locais/' in route %}{% set metaKeywords = 'luxury Property Care Madeira, Property Care Madeira, imÃ³vel de luxo Madeira, manutenÃ§Ã£o villa Madeira, segunda residÃªncia Madeira' %}
-      {% else %}{% set metaKeywords = 'luxury Property Care Madeira, Property Care Madeira, imÃ³vel de luxo Madeira, manutenÃ§Ã£o villa Madeira, property care Madeira' %}
+      {% if '/services/' in route %}{% set metaKeywords = 'serviços luxo Madeira, limpeza luxo Madeira, limpeza premium Madeira, Property Care Madeira, residências privadas Madeira' %}
+      {% elif '/landing/' in route %}{% set metaKeywords = 'Alojamento Local Madeira, limpeza alojamento Madeira, limpeza AL Madeira, premium cleaning Madeira, preparação de chegada Madeira' %}
+      {% elif '/check/' in route %}{% set metaKeywords = 'storm check Madeira, verificação tempestade Madeira, controlo imóvel Madeira, Property Care Madeira, villa luxo Madeira' %}
+      {% elif '/locais/' in route %}{% set metaKeywords = 'luxury Property Care Madeira, Property Care Madeira, imóvel de luxo Madeira, manutenção villa Madeira, segunda residência Madeira' %}
+      {% else %}{% set metaKeywords = 'luxury Property Care Madeira, Property Care Madeira, imóvel de luxo Madeira, manutenção villa Madeira, property care Madeira' %}
       {% endif %}
     {% else %}
       {% if '/services/' in route %}{% set metaKeywords = 'luxury services Madeira, luxury cleaning Madeira, premium cleaning Madeira, Property Care Madeira, private residences Madeira' %}
-      {% elif '/landing/' in route or '/al/' in route %}{% set metaKeywords = 'Alojamento Local Madeira, holiday rental cleaning Madeira, AL cleaning Madeira, premium cleaning Madeira, arrival preparation Madeira' %}
+      {% elif '/landing/' in route %}{% set metaKeywords = 'Alojamento Local Madeira, holiday rental cleaning Madeira, AL cleaning Madeira, premium cleaning Madeira, arrival preparation Madeira' %}
       {% elif '/check/' in route %}{% set metaKeywords = 'storm check Madeira, property inspection Madeira, Property Care Madeira, luxury property Madeira, villa care Madeira' %}
       {% elif '/locations/' in route %}{% set metaKeywords = 'luxury Property Care Madeira, Property Care Madeira, luxury property Madeira, villa care Madeira, second home Madeira' %}
       {% else %}{% set metaKeywords = 'luxury Property Care Madeira, Property Care Madeira, luxury property Madeira, villa care Madeira, property care Madeira' %}
@@ -190,8 +190,8 @@
   {% if page.url %}
     {% set isMainIndex = page.url == ("/" + pageLang + "/") %}
     {% set isContact = page.url.indexOf("/" + pageLang + "/contact/") == 0 %}
-    {% set localizedAlRoot = {"de":"/de/landing/al-madeira/","en":"/en/landinging-for-al/","fr":"/fr/landing/nettoyage-al/","pt":"/pt/landing/limpeza-al/"} %}
-    {% set isAl = page.url.indexOf("/" + pageLang + "/al/") == 0 or page.url == localizedAlRoot[pageLang] %}
+    {% set localizedAlRoot = {"de":"/de/landing/alto/","en":"/en/landinging-for-al/","fr":"/fr/landing/alto/","pt":"/pt/landing/alto/"} %}
+    {% set isAl = false %}
     {% set isCheck = page.url.indexOf("/" + pageLang + "/check/") == 0 %}
     {% set localizedAreaRoots = {"de":"/de/orte/","en":"/en/locations/","fr":"/fr/lieux/","pt":"/pt/locais/"} %}
     {% set isAreas = page.url.indexOf(localizedAreaRoots[pageLang]) == 0 %}
@@ -206,4 +206,7 @@
   <script src="/assets/js/cookie.js"></script>
 </body>
 </html>
+
+
+
 
