@@ -2,14 +2,14 @@
 layout: base.njk
 lang: de
 title: "Kontakt | Anjo Cleaning Madeira"
-description: "Kontaktieren Sie Anjo Cleaning Madeira fÃ¼r Turnover-Reinigung (Alojamento Local/Airbnb), Privatresidenzen und Gewerbe. Klare Prozesse, verlÃ¤ssliche QualitÃ¤t."
+description: "Kontaktieren Sie Anjo Cleaning Madeira für Turnover-Reinigung (Alojamento Local/Airbnb), Privatresidenzen und Gewerbe. Klare Prozesse, verlässliche Qualität."
 permalink: /de/contact/
 
 langLinks:
-  de: /de/de/contact/
-  en: /en/de/contact/
-  fr: /fr/de/contact/
-  pt: /pt/de/contact/
+  de: /de/contact/
+  en: /en/contact/
+  fr: /fr/contact/
+  pt: /pt/contact/
 ---
 
 <style>
@@ -262,7 +262,7 @@ langLinks:
   </div>
 
   <p class="subline" id="intro">
-    Schreib uns fÃ¼r VerfÃ¼gbarkeit, Preise oder ein maÃŸgeschneidertes Reinigungskonzept. Wir melden uns so schnell wie mÃ¶glich.
+    Schreib uns für Verfügbarkeit, Preise oder ein maßgeschneidertes Reinigungskonzept. Wir melden uns so schnell wie möglich.
   </p>
 
   <div class="card">
@@ -309,13 +309,13 @@ langLinks:
               aria-haspopup="listbox"
               aria-expanded="false"
             >
-              <span class="value"><span class="placeholder">AuswÃ¤hlenâ€¦</span></span>
+              <span class="value"><span class="placeholder">Auswählenâ€¦</span></span>
               <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
 
-            <div class="listbox" role="listbox" aria-label="Leistung auswÃ¤hlen">
+            <div class="listbox" role="listbox" aria-label="Leistung auswählen">
               <button type="button" class="option option--spacer" aria-hidden="true" tabindex="-1"></button>
               <button type="button" class="option" role="option" data-value="house_sitting" aria-selected="false">Property Care Luxury</button>
               <button type="button" class="option" role="option" data-value="services_luxury" aria-selected="false">Services Luxury</button>
@@ -329,13 +329,13 @@ langLinks:
 
       <div style="margin-top:12px;">
         <label for="message">Nachricht <span class="req">*</span></label>
-        <textarea class="field" id="message" name="message" placeholder="Worum gehtâ€™s? (Ort, GrÃ¶ÃŸe, Zeitraum, besondere WÃ¼nsche)â€¦" required=""></textarea>
+        <textarea class="field" id="message" name="message" placeholder="Worum gehtâ€™s? (Ort, Größe, Zeitraum, besondere Wünsche)â€¦" required=""></textarea>
       </div>
 
       <div class="checkwrap">
         <input id="consent" name="consent" type="checkbox" required=""/>
         <div class="fineprint">
-          Ich habe die <a class="mutedLink" href="/de/privacy/">DatenschutzerklÃ¤rung</a> gelesen und zur Kenntnis genommen. <span class="req">*</span>
+          Ich habe die <a class="mutedLink" href="/de/privacy/">Datenschutzerklärung</a> gelesen und zur Kenntnis genommen. <span class="req">*</span>
         </div>
       </div>
 
@@ -345,9 +345,9 @@ langLinks:
       </div>
 
       <div class="fineprint" id="processingText">
-        <b>Verarbeitung:</b> Wir verarbeiten deine Angaben zur Bearbeitung deiner Anfrage und fÃ¼r vorvertragliche MaÃŸnahmen (Art. 6(1)(b) DSGVO).
-        <b>EmpfÃ¤nger:</b> keine Weitergabe an Dritte; Versand per Server-Mail.
-        <b>Rechte:</b> Auskunft/LÃ¶schung/Widerspruch etc. siehe <a class="mutedLink" href="/de/privacy/">DatenschutzerklÃ¤rung</a>.
+        <b>Verarbeitung:</b> Wir verarbeiten deine Angaben zur Bearbeitung deiner Anfrage und für vorvertragliche Maßnahmen (Art. 6(1)(b) DSGVO).
+        <b>Empfänger:</b> keine Weitergabe an Dritte; Versand per Server-Mail.
+        <b>Rechte:</b> Auskunft/Löschung/Widerspruch etc. siehe <a class="mutedLink" href="/de/privacy/">Datenschutzerklärung</a>.
       </div>
 
       <div class="actions">
@@ -450,7 +450,7 @@ langLinks:
       hiddenService.setAttribute("value", value || "");
     }
     if(valueEl){
-      valueEl.innerHTML = label ? escapeHtml(label) : '<span class="placeholder">AuswÃ¤hlenâ€¦</span>';
+      valueEl.innerHTML = label ? escapeHtml(label) : '<span class="placeholder">Auswählenâ€¦</span>';
     }
     options.forEach(o=>{
       o.setAttribute("aria-selected", o.dataset.value === value ? "true" : "false");
@@ -518,10 +518,10 @@ langLinks:
     const consent = !!document.getElementById("consent")?.checked;
 
     if(!name || !email || !service || !message){
-      return showErr("Bitte fÃ¼lle alle Pflichtfelder (*) aus.");
+      return showErr("Bitte fülle alle Pflichtfelder (*) aus.");
     }
     if(!consent){
-      return showErr("Bitte bestÃ¤tige die Datenschutzhinweise (Checkbox).");
+      return showErr("Bitte bestätige die Datenschutzhinweise (Checkbox).");
     }
 
     setBusy(true);
@@ -565,4 +565,5 @@ langLinks:
   });
 })();
 </script>
+
 
