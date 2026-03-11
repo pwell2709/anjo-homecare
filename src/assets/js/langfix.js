@@ -18,7 +18,7 @@
 
     for (const l of LANGS) {
       if (p === `/${l}`) return "/";
-      if (p.startsWith(`/${l}/`)) return p.slice(l.length + 1); // keep leading "/"
+      if (p.startsWith(`/${l}/`)) return p.slice(3); // keep leading "/"
     }
     return p;
   }
@@ -125,3 +125,4 @@
   apply();
   document.addEventListener("DOMContentLoaded", apply);
 })();
+

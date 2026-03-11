@@ -15,7 +15,7 @@ module.exports = {
         { label: "Luxury Property Care", url: "/en/home/" },
         { label: "Luxury Services", url: "/en/services/" },
         { label: "Storm Check", url: "/en/check/" },
-        { label: "AL-Alojamento", url: "/en/landing/cleaning-for-al/" },
+        { label: "AL-Alojamento", url: "/en/landing/alto/" },
         { label: "FAQ", url: "/en/faq/" },
         { label: "About", url: "/en/about/" },
         { label: "Contact", url: "/en/contact/" },
@@ -34,7 +34,7 @@ module.exports = {
         { label: "Luxury Property Care", url: "/de/home/" },
         { label: "Luxury Services", url: "/de/services/" },
         { label: "Storm Check", url: "/de/check/" },
-        { label: "AL-Alojamento", url: "/de/landing/al-madeira/" },
+        { label: "AL-Alojamento", url: "/de/landing/alto/" },
         { label: "FAQ", url: "/de/faq/" },
         { label: "Über uns", url: "/de/about/" },
         { label: "Kontakt", url: "/de/contact/" },
@@ -53,7 +53,7 @@ module.exports = {
         { label: "Luxe Gestion de Propriété", url: "/fr/home/" },
         { label: "Luxe Services", url: "/fr/services/" },
         { label: "Contrôle Tempête", url: "/fr/check/" },
-        { label: "AL-Alojamento", url: "/fr/landing/nettoyage-al/" },
+        { label: "AL-Alojamento", url: "/fr/landing/alto/" },
         { label: "FAQ", url: "/fr/faq/" },
         { label: "À propos", url: "/fr/about/" },
         { label: "Contact", url: "/fr/contact/" },
@@ -72,7 +72,7 @@ module.exports = {
         { label: "Luxo Gestão de Propriedade", url: "/pt/home/" },
         { label: "Luxo Serviços", url: "/pt/services/" },
         { label: "Verificação de Tempestade", url: "/pt/check/" },
-        { label: "AL-Alojamento", url: "/pt/landing/limpeza-al/" },
+        { label: "AL-Alojamento", url: "/pt/landing/alto/" },
         { label: "FAQ", url: "/pt/faq/" },
         { label: "Sobre nós", url: "/pt/about/" },
         { label: "Contacto", url: "/pt/contact/" },
@@ -87,3 +87,4 @@ module.exports = {
     }
   }
 };
+
