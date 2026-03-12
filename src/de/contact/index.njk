@@ -1,4 +1,4 @@
-﻿---
+---
 layout: base.njk
 lang: de
 title: "Kontakt | Anjo Cleaning Madeira"
@@ -13,7 +13,7 @@ langLinks:
 ---
 
 <style>
-/* Premium Contact â€“ scoped */
+/* Premium Contact – scoped */
 /* CONTACT_LOCK: keep contact form identical to live. */
 .contact-premium{
   max-width: 980px;
@@ -291,7 +291,7 @@ langLinks:
       <div class="grid two" style="margin-top:12px;">
         <div>
           <label for="phone">Telefon (optional)</label>
-          <input class="field" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+351 â€¦"/>
+          <input class="field" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+351 …"/>
         </div>
 
         <div>
@@ -309,7 +309,7 @@ langLinks:
               aria-haspopup="listbox"
               aria-expanded="false"
             >
-              <span class="value"><span class="placeholder">Auswählenâ€¦</span></span>
+              <span class="value"><span class="placeholder">Auswählen…</span></span>
               <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -329,7 +329,7 @@ langLinks:
 
       <div style="margin-top:12px;">
         <label for="message">Nachricht <span class="req">*</span></label>
-        <textarea class="field" id="message" name="message" placeholder="Worum gehtâ€™s? (Ort, Größe, Zeitraum, besondere Wünsche)â€¦" required=""></textarea>
+        <textarea class="field" id="message" name="message" placeholder="Worum geht's? (Ort, Größe, Zeitraum, besondere Wünsche)…" required=""></textarea>
       </div>
 
       <div class="checkwrap">
@@ -409,7 +409,7 @@ langLinks:
     btn.setAttribute("aria-busy", isBusy ? "true" : "false");
     if(isBusy){
       btn.dataset.label = btn.textContent;
-      btn.textContent = "Wird gesendetâ€¦";
+      btn.textContent = "Wird gesendet…";
     }else{
       btn.textContent = btn.dataset.label || "Senden";
     }
@@ -450,7 +450,7 @@ langLinks:
       hiddenService.setAttribute("value", value || "");
     }
     if(valueEl){
-      valueEl.innerHTML = label ? escapeHtml(label) : '<span class="placeholder">Auswählenâ€¦</span>';
+      valueEl.innerHTML = label ? escapeHtml(label) : '<span class="placeholder">Auswählen…</span>';
     }
     options.forEach(o=>{
       o.setAttribute("aria-selected", o.dataset.value === value ? "true" : "false");
