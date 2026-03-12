@@ -161,3 +161,46 @@
   padding-bottom: 140px;
 }
 
+/* === GLOBAL CTA UNIFICATION === */
+.ctaInner{
+  gap: 16px;
+}
+
+.ctaInner .ctaBtn{
+  width: clamp(190px, 22vw, 250px);
+  min-height: 52px;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 820px){
+  .ctaInner .ctaBtn{
+    width: min(44vw, 220px);
+    min-height: 50px;
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 520px){
+  .ctaInner{
+    gap: 10px;
+  }
+
+  .ctaInner .ctaBtn{
+    width: min(44vw, 200px);
+    min-height: 48px;
+    font-size: 16px;
+    padding: 10px 10px;
+  }
+
+  .ctaBtn--wa .ctaBtnIcon{
+    width: 20px;
+    height: 20px;
+  }
+
+  .ctaBtn--wa svg{
+    width: 20px;
+    height: 20px;
+  }
+}

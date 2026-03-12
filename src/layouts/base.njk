@@ -186,20 +186,7 @@
   {% include "components/footer.njk" %}
   {% include "components/cookie.njk" %}
 
-  {% set showCta = false %}
-  {% if page.url %}
-    {% set isMainIndex = page.url == ("/" + pageLang + "/") %}
-    {% set isContact = page.url.indexOf("/" + pageLang + "/contact/") == 0 %}
-    {% set localizedAlRoot = {"de":"/de/landing/alto/","en":"/en/landing/alto/","fr":"/fr/landing/alto/","pt":"/pt/landing/alto/"} %}
-    {% set isAl = false %}
-    {% set isCheck = page.url.indexOf("/" + pageLang + "/check/") == 0 %}
-    {% set localizedAreaRoots = {"de":"/de/orte/","en":"/en/locations/","fr":"/fr/lieux/","pt":"/pt/locais/"} %}
-    {% set isAreas = page.url.indexOf(localizedAreaRoots[pageLang]) == 0 %}
-    {% if isMainIndex or isContact or isAl or isCheck or isAreas %}{% set showCta = true %}{% endif %}
-  {% endif %}
-  {% if showCta %}
-    {% include "components/cta.njk" %}
-  {% endif %}
+  {% include "components/cta.njk" %}
   <script src="/assets/js/nav.js"></script>
   <script src="/assets/js/langfix.js"></script>
   <script src="/assets/js/back.js"></script>
