@@ -13,7 +13,9 @@
       <a class="lang-btn lang-btn--fr" data-lang="fr" data-href="{{ langLinks.fr or '/fr/' }}" href="{{ langLinks.fr or '/fr/' }}" aria-label="Français" {% if pageLang=='fr' %}aria-current="page"{% endif %}></a>
       <a class="lang-btn lang-btn--pt" data-lang="pt" data-href="{{ langLinks.pt or '/pt/' }}" href="{{ langLinks.pt or '/pt/' }}" aria-label="Português" {% if pageLang=='pt' %}aria-current="page"{% endif %}></a>
     </div>
-    <a class="brand" href="/{{ pageLang }}/" aria-label="Home"><span class="sr-only">Anjo Property Care</span></a>
+    <a class="brand" href="/{{ pageLang }}/" aria-label="Home">
+  <img src="/assets/images/logo.svg" alt="Anjo Property Care" class="site-logo">
+</a>
   </div>
 
   <div class="menu-backdrop" data-menu-backdrop></div>
