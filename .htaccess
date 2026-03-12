@@ -1,0 +1,40 @@
+RewriteEngine On
+
+# 0) www -> non-www (always first)
+RewriteCond %{HTTP_HOST} ^www\.anjo-cleaning\.com$ [NC]
+RewriteRule ^ https://anjo-cleaning.com%{REQUEST_URI} [R=301,L]
+
+# 1) Force HTTPS (Strato-safe)
+RewriteCond %{HTTP:X-Forwarded-Proto} =http [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTP:X-Forwarded-Proto} =""
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# 2) Clean language roots (trailing slash)
+RewriteRule ^(pt|de|en|fr)$ /$1/ [R=301,L]
+
+# 3) Canonical root redirects -> /en/
+RewriteRule ^index\.html$ /en/ [R=301,L]
+RewriteRule ^$ /en/ [R=301,L]
+
+# 4) Legacy redirects
+RewriteRule ^pt/privado/?$ /pt/ [R=301,L]
+RewriteRule ^pt/servicos-luxo/?$ /pt/services/ [R=301,L]
+RewriteRule ^(de|en|fr|pt)/house-legacy/?$ /$1/home/ [R=301,L]
+
+# 5) Remove direct /index.html access on subpages
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+
+# 6) Fallback redirect for old / non-existing URLs -> /en/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ https://anjo-cleaning.com/en/ [R=301,L]
+
+Options -Indexes
+
+# Charset
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .json .xml .svg
