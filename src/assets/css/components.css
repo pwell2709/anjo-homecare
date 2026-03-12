@@ -1253,3 +1253,51 @@
 .prose-page a.cta-link:hover{
   background:rgba(255,255,255,.14);
 }
+
+/* === LOCATION OVERVIEW GRID === */
+.prose-page ul.sectionList.sectionList--locationsGrid{
+  list-style: none;
+  padding-left: 0;
+  margin: 1.2rem 0 1.4rem 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+
+.prose-page ul.sectionList.sectionList--locationsGrid li{
+  margin: 0;
+}
+
+.prose-page ul.sectionList.sectionList--locationsGrid li + li{
+  margin-top: 0;
+}
+
+.prose-page ul.sectionList.sectionList--locationsGrid a.cta-link{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  width: 100%;
+  text-align: center;
+  padding: 12px 14px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 980px){
+  .prose-page ul.sectionList.sectionList--locationsGrid{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px){
+  .prose-page ul.sectionList.sectionList--locationsGrid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px){
+  .prose-page ul.sectionList.sectionList--locationsGrid{
+    grid-template-columns: 1fr;
+  }
+}
