@@ -6,15 +6,6 @@ module.exports = function (eleventyConfig) {
   // Root deploy files
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("src/.htaccess");
-  eleventyConfig.addPassthroughCopy("src/oldhtaccess");
-  eleventyConfig.addPassthroughCopy("src/favicon.ico");
-  eleventyConfig.addPassthroughCopy("src/favicon.svg");
-  eleventyConfig.addPassthroughCopy("src/favicon-96x96.png");
-  eleventyConfig.addPassthroughCopy("src/apple-touch-icon.png");
-  eleventyConfig.addPassthroughCopy("src/site.webmanifest");
-  eleventyConfig.addPassthroughCopy("src/web-app-manifest-192x192.png");
-  eleventyConfig.addPassthroughCopy("src/web-app-manifest-512x512.png");
-
   // Falls vorhanden: PHP mit ausgeben
   eleventyConfig.addPassthroughCopy("src/send.php");
 
