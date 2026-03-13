@@ -12,26 +12,34 @@ RewriteCond %{HTTP:X-Forwarded-Proto} =""
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# 2) Clean language roots (trailing slash)
+# 2) Kill old lang query parameter and canonicalize to clean URLs
+RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
+RewriteRule ^$ /en/? [R=301,L]
+
+RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
+RewriteRule ^index\.html$ /en/? [R=301,L]
+
+RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
+RewriteRule ^(de|en|fr|pt)/?$ /$1/? [R=301,L]
+
+RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
+RewriteRule ^(de|en|fr|pt)/(.*)$ /$1/$2? [R=301,L]
+
+# 3) Clean language roots (trailing slash)
 RewriteRule ^(pt|de|en|fr)$ /$1/ [R=301,L]
 
-# 3) Canonical root redirects -> /en/
+# 4) Canonical root redirects -> /en/
 RewriteRule ^index\.html$ /en/ [R=301,L]
 RewriteRule ^$ /en/ [R=301,L]
 
-# 4) Legacy redirects
+# 5) Legacy redirects
 RewriteRule ^pt/privado/?$ /pt/ [R=301,L]
 RewriteRule ^pt/servicos-luxo/?$ /pt/services/ [R=301,L]
 RewriteRule ^(de|en|fr|pt)/house-legacy/?$ /$1/home/ [R=301,L]
 
-# 5) Remove direct /index.html access on subpages
+# 6) Remove direct /index.html access on subpages
 RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
 RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
-
-# 6) Fallback redirect for old / non-existing URLs -> /en/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ https://anjo-cleaning.com/en/ [R=301,L]
 
 Options -Indexes
 
@@ -39,20 +47,5 @@ Options -Indexes
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .html .css .js .json .xml .svg
 
-
-# Security Headers
-
-<IfModule mod_headers.c>
-
-Header always set X-Content-Type-Options "nosniff"
-Header always set X-Frame-Options "SAMEORIGIN"
-Header always set Referrer-Policy "strict-origin-when-cross-origin"
-
-Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-
-Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-
-Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://www.googletagmanager.com; frame-src https://www.googletagmanager.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self';"
-
-</IfModule>
-
+# Real 404 page
+ErrorDocument 404 /404.html
