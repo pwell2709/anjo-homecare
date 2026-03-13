@@ -52,17 +52,7 @@ Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
-Header always set Content-Security-Policy "
-default-src 'self';
-img-src 'self' data:;
-script-src 'self';
-style-src 'self';
-font-src 'self';
-connect-src 'self';
-frame-ancestors 'self';
-base-uri 'self';
-form-action 'self';
-"
+Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://www.googletagmanager.com; frame-src https://www.googletagmanager.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self';"
 
 </IfModule>
 
