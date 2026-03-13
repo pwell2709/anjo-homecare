@@ -8,10 +8,10 @@
       <span class="hamburger-lines" aria-hidden="true"><span></span><span></span><span></span></span>
     </button>
     <div class="lang-switch" aria-label="Language switch">
-      <a class="lang-btn lang-btn--en" data-lang="en" data-href="{{ langLinks.en or '/en/' }}" href="{{ langLinks.en or '/en/' }}" aria-label="English" {% if pageLang=='en' %}aria-current="page"{% endif %}></a>
-      <a class="lang-btn lang-btn--de" data-lang="de" data-href="{{ langLinks.de or '/de/' }}" href="{{ langLinks.de or '/de/' }}" aria-label="Deutsch" {% if pageLang=='de' %}aria-current="page"{% endif %}></a>
-      <a class="lang-btn lang-btn--fr" data-lang="fr" data-href="{{ langLinks.fr or '/fr/' }}" href="{{ langLinks.fr or '/fr/' }}" aria-label="Français" {% if pageLang=='fr' %}aria-current="page"{% endif %}></a>
-      <a class="lang-btn lang-btn--pt" data-lang="pt" data-href="{{ langLinks.pt or '/pt/' }}" href="{{ langLinks.pt or '/pt/' }}" aria-label="Português" {% if pageLang=='pt' %}aria-current="page"{% endif %}></a>
+      <a class="lang-btn lang-btn--en" data-lang="en" data-href="{{ langLinks.en }}" href="{{ langLinks.en }}" aria-label="English" {% if pageLang=='en' %}aria-current="page"{% endif %}></a>
+      <a class="lang-btn lang-btn--de" data-lang="de" data-href="{{ langLinks.de }}" href="{{ langLinks.de }}" aria-label="Deutsch" {% if pageLang=='de' %}aria-current="page"{% endif %}></a>
+      <a class="lang-btn lang-btn--fr" data-lang="fr" data-href="{{ langLinks.fr }}" href="{{ langLinks.fr }}" aria-label="Français" {% if pageLang=='fr' %}aria-current="page"{% endif %}></a>
+      <a class="lang-btn lang-btn--pt" data-lang="pt" data-href="{{ langLinks.pt }}" href="{{ langLinks.pt }}" aria-label="Português" {% if pageLang=='pt' %}aria-current="page"{% endif %}></a>
     </div>
     <a class="brand" href="/{{ pageLang }}/" aria-label="Home">
   <img src="/assets/images/logo.svg" alt="Anjo Property Care" class="site-logo">
