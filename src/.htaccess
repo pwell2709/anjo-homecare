@@ -25,6 +25,13 @@ RewriteRule ^(de|en|fr|pt)/?$ /$1/? [R=301,L]
 RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
 RewriteRule ^(de|en|fr|pt)/(.*)$ /$1/$2? [R=301,L]
 
+# 2b) Strip any other query string from clean localized URLs
+RewriteCond %{QUERY_STRING} .+
+RewriteRule ^(de|en|fr|pt)/?$ /$1/? [R=301,L]
+
+RewriteCond %{QUERY_STRING} .+
+RewriteRule ^(de|en|fr|pt)/(.*)$ /$1/$2? [R=301,L]
+
 # 3) Clean language roots (trailing slash)
 RewriteRule ^(pt|de|en|fr)$ /$1/ [R=301,L]
 
@@ -36,6 +43,35 @@ RewriteRule ^$ /en/ [R=301,L]
 RewriteRule ^pt/privado/?$ /pt/ [R=301,L]
 RewriteRule ^pt/servicos-luxo/?$ /pt/services/ [R=301,L]
 RewriteRule ^(de|en|fr|pt)/house-legacy/?$ /$1/home/ [R=301,L]
+
+# 5b) Additional legacy redirects from old site
+Redirect 301 /de/house/ https://anjo-cleaning.com/de/home/
+Redirect 301 /de/home-care-service-madeira/ https://anjo-cleaning.com/de/home/
+Redirect 301 /de/house-sitting-madeira/ https://anjo-cleaning.com/de/home/
+Redirect 301 /de/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/de/home/
+Redirect 301 /de/landing/al-madeira/ https://anjo-cleaning.com/de/landing/alto/
+Redirect 301 /de/reinigung/ https://anjo-cleaning.com/de/services/
+
+Redirect 301 /en/house/ https://anjo-cleaning.com/en/home/
+Redirect 301 /en/home-care-service-madeira/ https://anjo-cleaning.com/en/home/
+Redirect 301 /en/house-sitting-madeira/ https://anjo-cleaning.com/en/home/
+Redirect 301 /en/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/en/home/
+Redirect 301 /en/landing/cleaning-for-al/ https://anjo-cleaning.com/en/landing/alto/
+Redirect 301 /en/cleaning/ https://anjo-cleaning.com/en/services/
+
+Redirect 301 /fr/house/ https://anjo-cleaning.com/fr/home/
+Redirect 301 /fr/home-care-service-madeira/ https://anjo-cleaning.com/fr/home/
+Redirect 301 /fr/house-sitting-madeira/ https://anjo-cleaning.com/fr/home/
+Redirect 301 /fr/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/fr/home/
+Redirect 301 /fr/landing/nettoyage-al/ https://anjo-cleaning.com/fr/landing/alto/
+Redirect 301 /fr/nettoyage/ https://anjo-cleaning.com/fr/services/
+
+Redirect 301 /pt/house/ https://anjo-cleaning.com/pt/home/
+Redirect 301 /pt/home-care-service-madeira/ https://anjo-cleaning.com/pt/home/
+Redirect 301 /pt/house-sitting-madeira/ https://anjo-cleaning.com/pt/home/
+Redirect 301 /pt/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/pt/home/
+Redirect 301 /pt/landing/limpeza-al/ https://anjo-cleaning.com/pt/landing/alto/
+Redirect 301 /pt/limpeza/ https://anjo-cleaning.com/pt/services/
 
 # 6) Remove direct /index.html access on subpages
 RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
