@@ -1,10 +1,14 @@
 RewriteEngine On
 
-# 0) www -> non-www (always first)
+# ----------------------------------------------------
+# 1) www -> non-www
+# ----------------------------------------------------
 RewriteCond %{HTTP_HOST} ^www\.anjo-cleaning\.com$ [NC]
 RewriteRule ^ https://anjo-cleaning.com%{REQUEST_URI} [R=301,L]
 
-# 1) Force HTTPS (Strato-safe)
+# ----------------------------------------------------
+# 2) Force HTTPS (Strato safe)
+# ----------------------------------------------------
 RewriteCond %{HTTP:X-Forwarded-Proto} =http [NC]
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
@@ -12,76 +16,90 @@ RewriteCond %{HTTP:X-Forwarded-Proto} =""
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# 2) Kill old lang query parameter and canonicalize to clean URLs
-RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
+# ----------------------------------------------------
+# 3) Language parameter redirects
+# ----------------------------------------------------
+RewriteCond %{QUERY_STRING} (^|&)lang=de(&|$) [NC]
+RewriteRule ^$ /de/? [R=301,L]
+
+RewriteCond %{QUERY_STRING} (^|&)lang=en(&|$) [NC]
 RewriteRule ^$ /en/? [R=301,L]
 
-RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
-RewriteRule ^index\.html$ /en/? [R=301,L]
+RewriteCond %{QUERY_STRING} (^|&)lang=fr(&|$) [NC]
+RewriteRule ^$ /fr/? [R=301,L]
 
-RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
-RewriteRule ^(de|en|fr|pt)/?$ /$1/? [R=301,L]
+RewriteCond %{QUERY_STRING} (^|&)lang=pt(&|$) [NC]
+RewriteRule ^$ /pt/? [R=301,L]
 
-RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
-RewriteRule ^(de|en|fr|pt)/(.*)$ /$1/$2? [R=301,L]
-
-# 2b) Strip any other query string from clean localized URLs
-RewriteCond %{QUERY_STRING} .+
-RewriteRule ^(de|en|fr|pt)/?$ /$1/? [R=301,L]
-
-RewriteCond %{QUERY_STRING} .+
-RewriteRule ^(de|en|fr|pt)/(.*)$ /$1/$2? [R=301,L]
-
-# 3) Clean language roots (trailing slash)
-RewriteRule ^(pt|de|en|fr)$ /$1/ [R=301,L]
-
-# 4) Canonical root redirects -> /en/
+# ----------------------------------------------------
+# 4) Root redirect
+# ----------------------------------------------------
 RewriteRule ^index\.html$ /en/ [R=301,L]
 RewriteRule ^$ /en/ [R=301,L]
 
-# 5) Legacy redirects
-RewriteRule ^pt/privado/?$ /pt/ [R=301,L]
-RewriteRule ^pt/servicos-luxo/?$ /pt/services/ [R=301,L]
-RewriteRule ^(de|en|fr|pt)/house-legacy/?$ /$1/home/ [R=301,L]
+# ----------------------------------------------------
+# 5) Language root cleanup
+# ----------------------------------------------------
+RewriteRule ^(de|en|fr|pt)$ /$1/ [R=301,L]
 
-# 5b) Additional legacy redirects from old site
-Redirect 301 /de/house/ https://anjo-cleaning.com/de/home/
-Redirect 301 /de/home-care-service-madeira/ https://anjo-cleaning.com/de/home/
-Redirect 301 /de/house-sitting-madeira/ https://anjo-cleaning.com/de/home/
-Redirect 301 /de/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/de/home/
-Redirect 301 /de/landing/al-madeira/ https://anjo-cleaning.com/de/landing/alto/
+# ----------------------------------------------------
+# 6) Remove index.html inside languages
+# ----------------------------------------------------
+RewriteRule ^(de|en|fr|pt)/index\.html$ /$1/ [R=301,L,NC]
+
+# ----------------------------------------------------
+# 7) Remove .html for real pages
+# ----------------------------------------------------
+RewriteRule ^(de|en|fr|pt)/(services|legal|privacy|contact|about)\.html$ /$1/$2/ [R=301,L,NC]
+
+# ----------------------------------------------------
+# 8) Legacy redirects (old site)
+# ----------------------------------------------------
+
+Redirect 301 /de/cleaning/ https://anjo-cleaning.com/de/services/
 Redirect 301 /de/reinigung/ https://anjo-cleaning.com/de/services/
 
-Redirect 301 /en/house/ https://anjo-cleaning.com/en/home/
-Redirect 301 /en/home-care-service-madeira/ https://anjo-cleaning.com/en/home/
-Redirect 301 /en/house-sitting-madeira/ https://anjo-cleaning.com/en/home/
-Redirect 301 /en/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/en/home/
-Redirect 301 /en/landing/cleaning-for-al/ https://anjo-cleaning.com/en/landing/alto/
 Redirect 301 /en/cleaning/ https://anjo-cleaning.com/en/services/
-
-Redirect 301 /fr/house/ https://anjo-cleaning.com/fr/home/
-Redirect 301 /fr/home-care-service-madeira/ https://anjo-cleaning.com/fr/home/
-Redirect 301 /fr/house-sitting-madeira/ https://anjo-cleaning.com/fr/home/
-Redirect 301 /fr/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/fr/home/
-Redirect 301 /fr/landing/nettoyage-al/ https://anjo-cleaning.com/fr/landing/alto/
 Redirect 301 /fr/nettoyage/ https://anjo-cleaning.com/fr/services/
-
-Redirect 301 /pt/house/ https://anjo-cleaning.com/pt/home/
-Redirect 301 /pt/home-care-service-madeira/ https://anjo-cleaning.com/pt/home/
-Redirect 301 /pt/house-sitting-madeira/ https://anjo-cleaning.com/pt/home/
-Redirect 301 /pt/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/pt/home/
-Redirect 301 /pt/landing/limpeza-al/ https://anjo-cleaning.com/pt/landing/alto/
 Redirect 301 /pt/limpeza/ https://anjo-cleaning.com/pt/services/
 
-# 6) Remove direct /index.html access on subpages
-RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
-RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+Redirect 301 /de/house/ https://anjo-cleaning.com/de/home/
+Redirect 301 /en/house/ https://anjo-cleaning.com/en/home/
+Redirect 301 /fr/house/ https://anjo-cleaning.com/fr/home/
+Redirect 301 /pt/house/ https://anjo-cleaning.com/pt/home/
 
+Redirect 301 /de/home-care-service-madeira/ https://anjo-cleaning.com/de/home/
+Redirect 301 /en/home-care-service-madeira/ https://anjo-cleaning.com/en/home/
+Redirect 301 /fr/home-care-service-madeira/ https://anjo-cleaning.com/fr/home/
+Redirect 301 /pt/home-care-service-madeira/ https://anjo-cleaning.com/pt/home/
+
+Redirect 301 /de/house-sitting-madeira/ https://anjo-cleaning.com/de/home/
+Redirect 301 /en/house-sitting-madeira/ https://anjo-cleaning.com/en/home/
+Redirect 301 /fr/house-sitting-madeira/ https://anjo-cleaning.com/fr/home/
+Redirect 301 /pt/house-sitting-madeira/ https://anjo-cleaning.com/pt/home/
+
+Redirect 301 /de/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/de/home/
+Redirect 301 /en/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/en/home/
+Redirect 301 /fr/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/fr/home/
+Redirect 301 /pt/Home%20Care%20Service-madeira/ https://anjo-cleaning.com/pt/home/
+
+Redirect 301 /de/landing/al-madeira/ https://anjo-cleaning.com/de/landing/alto/
+Redirect 301 /en/landing/cleaning-for-al/ https://anjo-cleaning.com/en/landing/alto/
+Redirect 301 /fr/landing/nettoyage-al/ https://anjo-cleaning.com/fr/landing/alto/
+Redirect 301 /pt/landing/limpeza-al/ https://anjo-cleaning.com/pt/landing/alto/
+
+# ----------------------------------------------------
+# Security
+# ----------------------------------------------------
 Options -Indexes
 
+# ----------------------------------------------------
 # Charset
+# ----------------------------------------------------
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .html .css .js .json .xml .svg
 
-# Real 404 page
+# ----------------------------------------------------
+# Custom 404
+# ----------------------------------------------------
 ErrorDocument 404 /404.html
