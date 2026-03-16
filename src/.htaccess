@@ -1,23 +1,7 @@
 RewriteEngine On
 
 # ----------------------------------------------------
-# 1) www -> non-www
-# ----------------------------------------------------
-RewriteCond %{HTTP_HOST} ^www\.anjo-cleaning\.com$ [NC]
-RewriteRule ^ https://anjo-cleaning.com%{REQUEST_URI} [R=301,L]
-
-# ----------------------------------------------------
-# 2) Force HTTPS (Strato safe)
-# ----------------------------------------------------
-RewriteCond %{HTTP:X-Forwarded-Proto} =http [NC]
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-
-RewriteCond %{HTTP:X-Forwarded-Proto} =""
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-
-# ----------------------------------------------------
-# 3) Language parameter redirects
+# 1) Language parameter redirects on root
 # ----------------------------------------------------
 RewriteCond %{QUERY_STRING} (^|&)lang=de(&|$) [NC]
 RewriteRule ^$ /de/? [R=301,L]
@@ -32,28 +16,51 @@ RewriteCond %{QUERY_STRING} (^|&)lang=pt(&|$) [NC]
 RewriteRule ^$ /pt/? [R=301,L]
 
 # ----------------------------------------------------
-# 4) Root redirect
+# 2) Remove legacy lang parameter on non-root URLs
+# ----------------------------------------------------
+RewriteCond %{QUERY_STRING} (^|&)lang=(de|en|fr|pt)(&|$) [NC]
+RewriteCond %{REQUEST_URI} !^/$
+RewriteRule ^ %{REQUEST_URI}? [R=301,L]
+
+# ----------------------------------------------------
+# 3) www -> non-www
+# ----------------------------------------------------
+RewriteCond %{HTTP_HOST} ^www\.anjo-cleaning\.com$ [NC]
+RewriteRule ^ https://anjo-cleaning.com%{REQUEST_URI} [R=301,L]
+
+# ----------------------------------------------------
+# 4) Force HTTPS (Strato safe)
+# ----------------------------------------------------
+RewriteCond %{HTTP:X-Forwarded-Proto} =http [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTP:X-Forwarded-Proto} =""
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# ----------------------------------------------------
+# 5) Root redirect
 # ----------------------------------------------------
 RewriteRule ^index\.html$ /en/ [R=301,L]
 RewriteRule ^$ /en/ [R=301,L]
 
 # ----------------------------------------------------
-# 5) Language root cleanup
+# 6) Language root cleanup
 # ----------------------------------------------------
 RewriteRule ^(de|en|fr|pt)$ /$1/ [R=301,L]
 
 # ----------------------------------------------------
-# 6) Remove index.html inside languages
+# 7) Remove index.html inside languages
 # ----------------------------------------------------
 RewriteRule ^(de|en|fr|pt)/index\.html$ /$1/ [R=301,L,NC]
 
 # ----------------------------------------------------
-# 7) Remove .html for real pages
+# 8) Remove .html for all real language pages
 # ----------------------------------------------------
-RewriteRule ^(de|en|fr|pt)/(services|legal|privacy|contact|about)\.html$ /$1/$2/ [R=301,L,NC]
+RewriteRule ^(de|en|fr|pt)/(.*)\.html$ /$1/$2/ [R=301,L,NC]
 
 # ----------------------------------------------------
-# 8) Legacy redirects (old site)
+# 9) Legacy redirects (old site)
 # ----------------------------------------------------
 
 Redirect 301 /de/cleaning/ https://anjo-cleaning.com/de/services/
