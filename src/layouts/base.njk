@@ -1,4 +1,3 @@
-
 <!doctype html>
 {% set pageLang = lang or '' %}
 {% if not pageLang and page.url and (page.url | slice(0,4)) == '/de/' %}{% set pageLang = 'de' %}{% endif %}
@@ -10,13 +9,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   {% set canonicalUrl = site.canonicalBase ~ (page.url or '/') %}
-  {% set xDefaultUrl = site.canonicalBase ~ '/en/' %}
+  {% set xDefaultPath = '/en/' %}
+  {% if langLinks and langLinks.en %}
+    {% set xDefaultPath = langLinks.en %}
+  {% endif %}
+  {% set xDefaultUrl = site.canonicalBase ~ xDefaultPath %}
+
   {% set ogLocale = {'de':'de_DE','en':'en_US','fr':'fr_FR','pt':'pt_PT'}[pageLang] or 'en_US' %}
+
   <title>{{ title }}</title>
   <meta name="description" content="{{ description }}">
+
   {% set route = page.url or '/' %}
   {% set metaKeywords = keywords %}
+
   {% if not metaKeywords %}
     {% if pageLang == 'de' %}
       {% if '/services/' in route %}{% set metaKeywords = 'Services Luxus Madeira, Luxusreinigung Madeira, Premium Reinigung Madeira, Property Care Madeira, private Residenzen Madeira' %}
@@ -48,13 +56,17 @@
       {% endif %}
     {% endif %}
   {% endif %}
+
   <meta name="keywords" content="Keyholding, {{ metaKeywords }}">
+
   <link rel="canonical" href="{{ canonicalUrl }}">
+
   <link rel="alternate" hreflang="en" href="{{ site.canonicalBase }}{{ langLinks.en }}">
   <link rel="alternate" hreflang="de" href="{{ site.canonicalBase }}{{ langLinks.de }}">
   <link rel="alternate" hreflang="fr" href="{{ site.canonicalBase }}{{ langLinks.fr }}">
   <link rel="alternate" hreflang="pt" href="{{ site.canonicalBase }}{{ langLinks.pt }}">
   <link rel="alternate" hreflang="x-default" href="{{ xDefaultUrl }}">
+
   <meta property="og:type" content="website">
   <meta property="og:locale" content="{{ ogLocale }}">
   <meta property="og:site_name" content="Anjo Property Care Madeira">
@@ -62,99 +74,33 @@
   <meta property="og:description" content="{{ description }}">
   <meta property="og:url" content="{{ canonicalUrl }}">
   <meta property="og:image" content="{{ site.canonicalBase }}{{ ogImage or site.ogImage }}">
+
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image" content="{{ site.canonicalBase }}{{ ogImage or site.ogImage }}">
   <meta name="twitter:url" content="{{ canonicalUrl }}">
-  {% set pageType = 'WebPage' %}
-  {% if '/faq/' in route %}{% set pageType = 'FAQPage' %}{% elif '/contact/' in route %}{% set pageType = 'ContactPage' %}{% elif '/services/' in route or '/home/' in route or '/check/' in route or '/landing/' in route %}{% set pageType = 'Service' %}{% endif %}
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "{{ site.canonicalBase }}/#organization",
-        "name": "Anjo Property Care Madeira",
-        "url": "{{ site.canonicalBase }}/en/",
-        "logo": "{{ site.canonicalBase }}/assets/images/logo.svg",
-        "email": "{{ site.email }}",
-        "sameAs": [{% for profile in site.sameAs %}"{{ profile }}"{% if not loop.last %}, {% endif %}{% endfor %}]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "{{ site.canonicalBase }}/#website",
-        "url": "{{ site.canonicalBase }}/en/",
-        "name": "Anjo Property Care Madeira",
-        "publisher": {"@id": "{{ site.canonicalBase }}/#organization"},
-        "inLanguage": ["en","de","fr","pt"]
-      },
-      {
-        "@type": "{{ pageType }}",
-        "@id": "{{ canonicalUrl }}#webpage",
-        "url": "{{ canonicalUrl }}",
-        "name": {{ title | dump | safe }},
-        "description": {{ description | dump | safe }},
-        "isPartOf": {"@id": "{{ site.canonicalBase }}/#website"},
-        "about": {"@id": "{{ site.canonicalBase }}/#organization"},
-        "inLanguage": "{{ pageLang }}"
-      }
-    ]
-  }
-  </script>
+
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicons/favicon-48x48.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/web-app-manifest-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
   <link rel="manifest" href="/assets/favicons/site.webmanifest">
   <meta name="theme-color" content="#001f3f">
+
   <link rel="preload" as="image" href="/assets/images/background.webp" media="(min-width: 821px)">
   <link rel="preload" as="image" href="/assets/images/backgroundm.webp" media="(max-width: 820px)">
+
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/theme.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/cta-icons.css">
 
-  <!-- SMARTPHONE BACKGROUND FIX -->
-  <style>
-    html, body{
-      min-height: 100% !important;
-      background: #000 !important;
-    }
-
-    body.l-page{
-      position: relative;
-      background: transparent !important;
-    }
-
-    body.l-page::before{
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background-color: #000;
-      background-image: url("/assets/images/background.webp");
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      transform: translateZ(0);
-      will-change: transform;
-    }
-
-    @media (max-width: 820px){
-      body.l-page::before{
-        background-image: url("/assets/images/backgroundm.webp");
-      }
-    }
-  </style>
-
-
-  <!-- Google Tag Manager (Consent Mode default denied) -->
+  <!-- Google Tag Manager -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -176,28 +122,27 @@
 
 </head>
 <body class="l-page">
-  <!-- Google Tag Manager (noscript) -->
+
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BLRDDSL"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
+
   {% include "components/header.njk" %}
+
   <main class="l-main page-wrapper prose-page">
     {{ content | safe }}
   </main>
+
   {% include "components/back.njk" %}
   {% include "components/footer.njk" %}
   {% include "components/cookie.njk" %}
-
   {% include "components/cta.njk" %}
+
   <script src="/assets/js/nav.js"></script>
   <script src="/assets/js/langfix.js"></script>
   <script src="/assets/js/back.js"></script>
   <script src="/assets/js/cookie.js"></script>
+
 </body>
 </html>
-
-
-
-
-
