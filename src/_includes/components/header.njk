@@ -3,12 +3,44 @@
 {% set navConfig = site.nav[pageLang] or site.nav.en %}
 {% set items = navConfig.main %}
 
+{% set a11y = {
+  de: {
+    openMenu: "Menü öffnen",
+    closeMenu: "Menü schließen",
+    languageSwitch: "Sprachwechsel",
+    homeLabel: "Anjo Property Care Startseite",
+    mainNavigation: "Hauptnavigation"
+  },
+  en: {
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    languageSwitch: "Language switch",
+    homeLabel: "Anjo Property Care home",
+    mainNavigation: "Main navigation"
+  },
+  fr: {
+    openMenu: "Ouvrir le menu",
+    closeMenu: "Fermer le menu",
+    languageSwitch: "Changer de langue",
+    homeLabel: "Page d’accueil Anjo Property Care",
+    mainNavigation: "Navigation principale"
+  },
+  pt: {
+    openMenu: "Abrir menu",
+    closeMenu: "Fechar menu",
+    languageSwitch: "Mudar idioma",
+    homeLabel: "Página inicial Anjo Property Care",
+    mainNavigation: "Navegação principal"
+  }
+} %}
+{% set L = a11y[pageLang] or a11y.en %}
+
 <header class="site-header" role="banner">
   <div class="header-inner">
 
     <button class="hamburger"
             type="button"
-            aria-label="Open menu"
+            aria-label="{{ L.openMenu }}"
             aria-controls="mobileMenu"
             aria-expanded="false"
             data-menu-button>
@@ -17,14 +49,14 @@
       </span>
     </button>
 
-    <nav class="lang-switch" aria-label="Language switch">
-      <a class="lang-btn lang-btn--en" data-lang="en" data-href="{{ langLinks.en }}" href="{{ langLinks.en }}" aria-label="English" {% if pageLang=='en' %}aria-current="page"{% endif %}></a>
-      <a class="lang-btn lang-btn--de" data-lang="de" data-href="{{ langLinks.de }}" href="{{ langLinks.de }}" aria-label="Deutsch" {% if pageLang=='de' %}aria-current="page"{% endif %}></a>
-      <a class="lang-btn lang-btn--fr" data-lang="fr" data-href="{{ langLinks.fr }}" href="{{ langLinks.fr }}" aria-label="Français" {% if pageLang=='fr' %}aria-current="page"{% endif %}></a>
-      <a class="lang-btn lang-btn--pt" data-lang="pt" data-href="{{ langLinks.pt }}" href="{{ langLinks.pt }}" aria-label="Português" {% if pageLang=='pt' %}aria-current="page"{% endif %}></a>
+    <nav class="lang-switch" aria-label="{{ L.languageSwitch }}">
+      <a class="lang-btn lang-btn--en" lang="en" hreflang="en" data-lang="en" data-href="{{ langLinks.en }}" href="{{ langLinks.en }}" aria-label="English" {% if pageLang=='en' %}aria-current="page"{% endif %}></a>
+      <a class="lang-btn lang-btn--de" lang="de" hreflang="de" data-lang="de" data-href="{{ langLinks.de }}" href="{{ langLinks.de }}" aria-label="Deutsch" {% if pageLang=='de' %}aria-current="page"{% endif %}></a>
+      <a class="lang-btn lang-btn--fr" lang="fr" hreflang="fr" data-lang="fr" data-href="{{ langLinks.fr }}" href="{{ langLinks.fr }}" aria-label="Français" {% if pageLang=='fr' %}aria-current="page"{% endif %}></a>
+      <a class="lang-btn lang-btn--pt" lang="pt" hreflang="pt" data-lang="pt" data-href="{{ langLinks.pt }}" href="{{ langLinks.pt }}" aria-label="Português" {% if pageLang=='pt' %}aria-current="page"{% endif %}></a>
     </nav>
 
-    <a class="brand" href="/{{ pageLang }}/" aria-label="Anjo Property Care home">
+    <a class="brand" href="/{{ pageLang }}/" aria-label="{{ L.homeLabel }}">
       <img src="/assets/images/logo.svg" alt="" class="site-logo">
     </a>
 
@@ -34,7 +66,7 @@
 
   <nav id="mobileMenu"
        class="menu-panel"
-       aria-label="Main navigation"
+       aria-label="{{ L.mainNavigation }}"
        data-menu-panel>
 
     <div class="menu-panel-inner">
@@ -49,7 +81,7 @@
 
             <button class="menu-close"
                     type="button"
-                    aria-label="Close menu"
+                    aria-label="{{ L.closeMenu }}"
                     data-menu-close>×</button>
           </div>
 
