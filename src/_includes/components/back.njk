@@ -1,17 +1,34 @@
 {% set t = {
-  de: { label: "Zurück" },
-  en: { label: "Back" },
-  fr: { label: "Retour" },
-  pt: { label: "Voltar" }
+  de: {
+    label: "Zurück",
+    nav: "Zurück Navigation",
+    button: "Zurück zur vorherigen Seite"
+  },
+  en: {
+    label: "Back",
+    nav: "Back navigation",
+    button: "Go back to previous page"
+  },
+  fr: {
+    label: "Retour",
+    nav: "Navigation retour",
+    button: "Retour à la page précédente"
+  },
+  pt: {
+    label: "Voltar",
+    nav: "Navegação voltar",
+    button: "Voltar à página anterior"
+  }
 } %}
-{% set L = t[pageLang] or t.de %}
+{% set L = t[pageLang] or t.en %}
 
-<nav class="back-wrap" role="navigation" aria-label="{{ L.label }} navigation">
+<nav class="back-wrap" aria-label="{{ L.nav }}">
   <button
     class="back-btn"
     type="button"
     data-back-button
     data-fallback="/{{ pageLang }}/"
+    aria-label="{{ L.button }}"
   >
     ← {{ L.label }}
   </button>
