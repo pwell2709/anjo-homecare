@@ -20,6 +20,50 @@
 }
 
 /* =========================================================
+   SKIP LINK
+========================================================= */
+
+.skip-link{
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2147483600;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.96);
+  border: 2px solid rgba(0,31,63,.88);
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 800;
+  line-height: 1.2;
+
+  transform: translateY(-140%);
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible{
+  transform: translateY(0);
+  outline: 2px solid rgba(0,31,63,.88);
+  outline-offset: 3px;
+}
+
+@media (max-width: 820px){
+  .skip-link{
+    top: 10px;
+    left: 10px;
+    max-width: calc(100vw - 20px);
+  }
+}
+
+/* =========================================================
    FIXED CONTROLS (Hamburger left / Language switch right)
 ========================================================= */
 
@@ -1318,4 +1362,3 @@
   border-radius: 16px;
   margin: 0 0 8px 0;
 }
-

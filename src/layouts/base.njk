@@ -123,6 +123,14 @@
 </head>
 <body class="l-page">
 
+  <a class="skip-link" href="#main-content">
+    {% if pageLang == 'de' %}Zum Hauptinhalt springen
+    {% elif pageLang == 'fr' %}Aller au contenu principal
+    {% elif pageLang == 'pt' %}Saltar para o conteúdo principal
+    {% else %}Skip to main content
+    {% endif %}
+  </a>
+
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BLRDDSL"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -130,7 +138,7 @@
 
   {% include "components/header.njk" %}
 
-  <main class="l-main page-wrapper prose-page">
+  <main id="main-content" class="l-main page-wrapper prose-page" tabindex="-1">
     {{ content | safe }}
   </main>
 
