@@ -2,48 +2,83 @@
 {% set pageLang = lang or 'en' %}
 {% set navConfig = site.nav[pageLang] or site.nav.en %}
 {% set items = navConfig.main %}
-<header class="site-header">
+
+<header class="site-header" role="banner">
   <div class="header-inner">
-    <button class="hamburger" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" data-menu-button>
-      <span class="hamburger-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+
+    <button class="hamburger"
+            type="button"
+            aria-label="Open menu"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+            data-menu-button>
+      <span class="hamburger-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
     </button>
+
     <nav class="lang-switch" aria-label="Language switch">
       <a class="lang-btn lang-btn--en" data-lang="en" data-href="{{ langLinks.en }}" href="{{ langLinks.en }}" aria-label="English" {% if pageLang=='en' %}aria-current="page"{% endif %}></a>
       <a class="lang-btn lang-btn--de" data-lang="de" data-href="{{ langLinks.de }}" href="{{ langLinks.de }}" aria-label="Deutsch" {% if pageLang=='de' %}aria-current="page"{% endif %}></a>
       <a class="lang-btn lang-btn--fr" data-lang="fr" data-href="{{ langLinks.fr }}" href="{{ langLinks.fr }}" aria-label="Français" {% if pageLang=='fr' %}aria-current="page"{% endif %}></a>
       <a class="lang-btn lang-btn--pt" data-lang="pt" data-href="{{ langLinks.pt }}" href="{{ langLinks.pt }}" aria-label="Português" {% if pageLang=='pt' %}aria-current="page"{% endif %}></a>
     </nav>
+
     <a class="brand" href="/{{ pageLang }}/" aria-label="Anjo Property Care home">
-  <img src="/assets/images/logo.svg" alt="" class="site-logo">
-</a>
+      <img src="/assets/images/logo.svg" alt="" class="site-logo">
+    </a>
+
   </div>
 
   <div class="menu-backdrop" data-menu-backdrop></div>
 
-  <aside id="mobileMenu" class="menu-panel" aria-label="Menu" data-menu-panel>
+  <nav id="mobileMenu"
+       class="menu-panel"
+       aria-label="Main navigation"
+       data-menu-panel>
+
     <div class="menu-panel-inner">
       <div class="menu-columns" data-menu-columns>
+
         <section class="menu-card" data-menu-main>
+
           <div class="menu-card-top">
-            <span class="menu-burger-icon" aria-hidden="true"><span></span><span></span><span></span></span>
-            <button class="menu-close" type="button" aria-label="Close menu" data-menu-close>×</button>
+            <span class="menu-burger-icon" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+
+            <button class="menu-close"
+                    type="button"
+                    aria-label="Close menu"
+                    data-menu-close>×</button>
           </div>
+
           <ul class="menu-list">
             <li class="menu-label-private-wrap">
               <div class="menu-label-private">{{ site.menuLabel }}</div>
               <div class="menu-divider-gold" aria-hidden="true"></div>
             </li>
+
             {% for item in items %}
             {% set itemIsCurrent = (navCurrentUrl == item.url) or (navCurrentUrl == item.url ~ "/") or (navCurrentUrl ~ "/" == item.url) %}
-{% if not itemIsCurrent %}
-<li>
-  <a class="menu-link" href="{{ item.url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.label }}</a>
-</li>
-{% endif %}
+            {% if not itemIsCurrent %}
+            <li>
+              <a class="menu-link"
+                 href="{{ item.url }}"
+                 {% if item.external %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                 {{ item.label }}
+              </a>
+            </li>
+            {% endif %}
             {% endfor %}
+
           </ul>
+
         </section>
+
       </div>
     </div>
-  </aside>
+
+  </nav>
+
 </header>
