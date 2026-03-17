@@ -40,7 +40,7 @@
 {% if currentPageLang == "fr" %}{% set contactLabel = "Formulaire" %}{% endif %}
 {% if currentPageLang == "pt" %}{% set contactLabel = "Formulário" %}{% endif %}
 
-<div class="ctaBar">
+<nav class="ctaBar" role="navigation" aria-label="Primary actions">
   <div class="ctaInner ctaInner--two">
 
     {% if not page.url or page.url != ("/" + currentPageLang + "/contact/") %}
@@ -61,4 +61,4 @@
     </a>
 
   </div>
-</div>
+</nav>
