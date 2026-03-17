@@ -6,7 +6,7 @@
 } %}
 {% set L = t[pageLang] or t.de %}
 
-<div class="back-wrap">
+<nav class="back-wrap" role="navigation" aria-label="{{ L.label }} navigation">
   <button
     class="back-btn"
     type="button"
@@ -16,4 +16,4 @@
   >
     ← {{ L.label }}
   </button>
-</div>
+</nav>
