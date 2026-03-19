@@ -34,7 +34,7 @@ module.exports = {
         { label: "Home", url: "/de/" },
         { label: "Luxury Property Care", url: "/de/home/" },
         { label: "Luxury Services", url: "/de/services/" },
-        { label: "Storm Check", url: "/de/check/" },
+        { label: "Unwetter Check", url: "/de/check/" },
         { label: "AL-Alojamento", url: "/de/landing/alto/" },
         { label: "Orte", url: "/de/orte/" },
         { label: "FAQ", url: "/de/faq/" },
