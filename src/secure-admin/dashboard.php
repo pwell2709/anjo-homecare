@@ -20,21 +20,21 @@ $recent = $pdo->query("
 
 audit_log('view_dashboard');
 
-admin_layout_start('Secure Admin Dashboard');
+admin_layout_start('Admin-Bereich Dashboard');
 
 echo '<div class="admin-card">';
 echo '<h2 class="admin-section-title">Dashboard</h2>';
 echo '<div class="admin-grid3">';
-echo '<div class="admin-kv-item"><div class="admin-kv-label">Stored inquiries</div><div class="admin-kv-value" style="font-size:28px;">' . e((string)$totalBookings) . '</div></div>';
-echo '<div class="admin-kv-item"><div class="admin-kv-label">Stored mail logs</div><div class="admin-kv-value" style="font-size:28px;">' . e((string)$totalMails) . '</div></div>';
-echo '<div class="admin-kv-item"><div class="admin-kv-label">Scope</div><div class="admin-kv-value">Read-only test phase</div></div>';
+echo '<div class="admin-kv-item"><div class="admin-kv-label">Gespeicherte Anfragen</div><div class="admin-kv-value" style="font-size:28px;">' . e((string)$totalBookings) . '</div></div>';
+echo '<div class="admin-kv-item"><div class="admin-kv-label">Gespeicherte Mail-Logs</div><div class="admin-kv-value" style="font-size:28px;">' . e((string)$totalMails) . '</div></div>';
+echo '<div class="admin-kv-item"><div class="admin-kv-label">Umfang</div><div class="admin-kv-value">Nur-Lesen Testphase</div></div>';
 echo '</div>';
 echo '</div>';
 
 echo '<div class="admin-card">';
-echo '<div class="admin-top" style="margin-bottom:10px"><h2 class="admin-section-title" style="margin:0">Recent inquiries</h2><a class="admin-btn" href="/secure-admin/customer-search.php">Open search</a></div>';
+echo '<div class="admin-top" style="margin-bottom:10px"><h2 class="admin-section-title" style="margin:0">Letzte Anfragen</h2><a class="admin-btn" href="/secure-admin/customer-search.php">Suche öffnen</a></div>';
 echo '<div class="admin-table-wrap">';
-echo '<table class="admin-table"><thead><tr><th>ID</th><th>Date</th><th>Name</th><th>Email</th><th>Service</th><th>Lang</th><th>Mail</th><th></th></tr></thead><tbody>';
+echo '<table class="admin-table"><thead><tr><th>ID</th><th>Datum</th><th>Name</th><th>Email</th><th>Leistung</th><th>Lang</th><th>Mail</th><th></th></tr></thead><tbody>';
 foreach ($recent as $row) {
     echo '<tr>';
     echo '<td>' . e((string)$row['id']) . '</td>';
@@ -43,8 +43,8 @@ foreach ($recent as $row) {
     echo '<td>' . e((string)$row['email']) . '</td>';
     echo '<td>' . e((string)$row['service']) . '</td>';
     echo '<td>' . e((string)$row['lang']) . '</td>';
-    echo '<td>' . ($row['mail_sent'] ? '<span class="admin-status-ok">sent</span>' : '<span class="admin-status-err">not sent</span>') . '</td>';
-    echo '<td><a class="admin-table-btn" href="/secure-admin/customer-view.php?id=' . urlencode((string)$row['id']) . '">View</a></td>';
+    echo '<td>' . ($row['mail_sent'] ? '<span class="admin-status-ok">gesendet</span>' : '<span class="admin-status-err">nicht gesendet</span>') . '</td>';
+    echo '<td><a class="admin-table-btn" href="/secure-admin/customer-view.php?id=' . urlencode((string)$row['id']) . '">Ansehen</a></td>';
     echo '</tr>';
 }
 echo '</tbody></table>';

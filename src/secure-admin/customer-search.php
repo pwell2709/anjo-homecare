@@ -68,43 +68,43 @@ audit_log('search_customers', null, json_encode([
     'date_to' => $dateTo,
 ], JSON_UNESCAPED_UNICODE));
 
-admin_layout_start('Customer Search');
+admin_layout_start('Kundensuche');
 
 echo '<div class="admin-card">';
-echo '<h2 class="admin-section-title">Customer Search</h2>';
+echo '<h2 class="admin-section-title">Kundensuche</h2>';
 echo '<form method="get" action="/secure-admin/customer-search.php">';
 echo '<div class="admin-grid4">';
 
 echo '<div class="admin-field"><label for="name">Name</label><input id="name" name="name" value="' . e($name) . '"></div>';
 echo '<div class="admin-field"><label for="email">E-Mail</label><input id="email" name="email" value="' . e($email) . '"></div>';
-echo '<div class="admin-field"><label for="phone">Phone</label><input id="phone" name="phone" value="' . e($phone) . '"></div>';
+echo '<div class="admin-field"><label for="phone">Telefon</label><input id="phone" name="phone" value="' . e($phone) . '"></div>';
 
-echo '<div class="admin-field"><label for="service">Service</label><select id="service" name="service"><option value="">All</option>';
+echo '<div class="admin-field"><label for="service">Leistung</label><select id="service" name="service"><option value="">Alle</option>';
 foreach ($serviceRows as $sr) {
     $v = (string)$sr['service'];
     echo '<option value="' . e($v) . '"' . ($service == $v ? ' selected' : '') . '>' . e($v) . '</option>';
 }
 echo '</select></div>';
 
-echo '<div class="admin-field"><label for="lang">Language</label><select id="lang" name="lang"><option value="">All</option>';
+echo '<div class="admin-field"><label for="lang">Sprache</label><select id="lang" name="lang"><option value="">Alle</option>';
 foreach ($langRows as $lr) {
     $v = (string)$lr['code'];
     echo '<option value="' . e($v) . '"' . ($lang == $v ? ' selected' : '') . '>' . e(strtoupper($v)) . '</option>';
 }
 echo '</select></div>';
 
-echo '<div class="admin-field"><label for="date_from">Date from</label><input id="date_from" name="date_from" type="date" value="' . e($dateFrom) . '"></div>';
-echo '<div class="admin-field"><label for="date_to">Date to</label><input id="date_to" name="date_to" type="date" value="' . e($dateTo) . '"></div>';
+echo '<div class="admin-field"><label for="date_from">Datum von</label><input id="date_from" name="date_from" type="date" value="' . e($dateFrom) . '"></div>';
+echo '<div class="admin-field"><label for="date_to">Datum bis</label><input id="date_to" name="date_to" type="date" value="' . e($dateTo) . '"></div>';
 echo '</div>';
 
-echo '<div class="admin-actions"><button class="admin-btn" type="submit">Search</button></div>';
+echo '<div class="admin-actions"><button class="admin-btn" type="submit">Suchen</button></div>';
 echo '</form>';
 echo '</div>';
 
 echo '<div class="admin-card">';
-echo '<h2 class="admin-section-title">Results (' . e((string)count($rows)) . ')</h2>';
+echo '<h2 class="admin-section-title">Ergebnisse (' . e((string)count($rows)) . ')</h2>';
 echo '<div class="admin-table-wrap">';
-echo '<table class="admin-table"><thead><tr><th>ID</th><th>Date</th><th>Name</th><th>E-Mail</th><th>Phone</th><th>Service</th><th>Lang</th><th>Mail</th><th></th></tr></thead><tbody>';
+echo '<table class="admin-table"><thead><tr><th>ID</th><th>Datum</th><th>Name</th><th>E-Mail</th><th>Telefon</th><th>Leistung</th><th>Lang</th><th>Mail</th><th></th></tr></thead><tbody>';
 foreach ($rows as $row) {
     echo '<tr>';
     echo '<td>' . e((string)$row['id']) . '</td>';
@@ -114,8 +114,8 @@ foreach ($rows as $row) {
     echo '<td>' . e((string)($row['phone'] ?? '')) . '</td>';
     echo '<td>' . e((string)$row['service']) . '</td>';
     echo '<td>' . e((string)$row['lang']) . '</td>';
-    echo '<td>' . ($row['mail_sent'] ? '<span class="admin-status-ok">sent</span>' : '<span class="admin-status-err">not sent</span>') . '</td>';
-    echo '<td><a class="admin-table-btn" href="/secure-admin/customer-view.php?id=' . urlencode((string)$row['id']) . '">Open</a></td>';
+    echo '<td>' . ($row['mail_sent'] ? '<span class="admin-status-ok">gesendet</span>' : '<span class="admin-status-err">nicht gesendet</span>') . '</td>';
+    echo '<td><a class="admin-table-btn" href="/secure-admin/customer-view.php?id=' . urlencode((string)$row['id']) . '">Öffnen</a></td>';
     echo '</tr>';
 }
 echo '</tbody></table>';

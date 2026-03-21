@@ -13,13 +13,13 @@ if (admin_is_logged_in()) {
 }
 
 $error = '';
-$timeout = isset($_GET['timeout']) ? 'Your session expired. Please log in again.' : '';
+$timeout = isset($_GET['timeout']) ? 'Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.' : '';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     if (!csrf_check()) {
-        $error = 'Invalid request.';
+        $error = 'Ungültige Anfrage.';
     } elseif (!admin_login_attempt_allowed()) {
-        $error = 'Too many failed attempts. Please wait 10 minutes.';
+        $error = 'Zu viele Fehlversuche. Bitte warte 10 Minuten.';
     } else {
         $username = trim((string)($_POST['username'] ?? ''));
         $password = (string)($_POST['password'] ?? '');
@@ -34,11 +34,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
             exit;
         }
 
-        $error = 'Login failed.';
+        $error = 'Anmeldung fehlgeschlagen.';
     }
 }
 
-admin_layout_start('Secure Admin Login');
+admin_layout_start('Admin-Bereich Anmeldung');
 
 echo '<div class="admin-login">';
 
@@ -50,17 +50,17 @@ if ($error !== '') {
 }
 
 echo '<div class="admin-card">';
-echo '<h2 class="admin-section-title">Login</h2>';
+echo '<h2 class="admin-section-title">Anmeldung</h2>';
 echo '<form method="post" action="/secure-admin/login.php">';
 echo csrf_input();
 
 echo '<div class="admin-field" style="margin-bottom:12px">';
-echo '<label for="username">Username</label>';
+echo '<label for="username">Benutzername</label>';
 echo '<input id="username" name="username" type="text" autocomplete="username" required>';
 echo '</div>';
 
 echo '<div class="admin-field" style="margin-bottom:12px">';
-echo '<label for="password">Password</label>';
+echo '<label for="password">Passwort</label>';
 echo '<input id="password" name="password" type="password" autocomplete="current-password" required>';
 echo '</div>';
 
@@ -69,10 +69,10 @@ echo '
 <div class="admin-field" style="margin-bottom:12px">
 <label>
 <input type="checkbox" name="remember">
-Remember me
+Angemeldet bleiben
 </label>
 </div>
-<button class="admin-btn" type="submit">Login</button>
+<button class="admin-btn" type="submit">Anmeldung</button>
 ';
 echo '</div>';
 

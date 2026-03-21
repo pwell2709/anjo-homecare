@@ -11,7 +11,7 @@ function admin_layout_start(string $title): void
     $fullTitle = e($title);
 
     echo '<!doctype html>';
-    echo '<html lang="en">';
+    echo '<html lang="de">';
     echo '<head>';
     echo '<meta charset="utf-8">';
     echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
@@ -276,23 +276,23 @@ function admin_layout_start(string $title): void
         echo '<div class="admin-top">';
         echo '<div class="admin-brand">';
         echo '<div>';
-        echo '<h1 class="admin-title">Secure Admin</h1>';
-        echo '<div class="admin-subtitle">Internal customer and inquiry view</div>';
+        echo '<h1 class="admin-title">Admin-Bereich</h1>';
+        echo '<div class="admin-subtitle">Interne Kunden- und Anfrageübersicht</div>';
         echo '</div>';
         echo '</div>';
 
         echo '<div class="admin-nav">';
         echo '<a class="admin-chip" href="/secure-admin/dashboard.php">Dashboard</a>';
-        echo '<a class="admin-chip" href="/secure-admin/customer-search.php">Customer Search</a>';
-        echo '<a class="admin-chip" href="/secure-admin/logout.php">Logout</a>';
+        echo '<a class="admin-chip" href="/secure-admin/customer-search.php">Kundensuche</a>';
+        echo '<a class="admin-chip" href="/secure-admin/logout.php">Abmelden</a>';
         echo '</div>';
         echo '</div>';
     } else {
         echo '<div class="admin-top">';
         echo '<div class="admin-brand">';
         echo '<div>';
-        echo '<h1 class="admin-title">Secure Admin</h1>';
-        echo '<div class="admin-subtitle">Protected internal access</div>';
+        echo '<h1 class="admin-title">Admin-Bereich</h1>';
+        echo '<div class="admin-subtitle">Geschützter interner Zugang</div>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
