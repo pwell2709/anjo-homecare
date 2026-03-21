@@ -4,3 +4,6 @@ encoding-audit.txt
 backups/
 SQL_Pass.txt
 *.bak_*
+scripts/add_secure_admin.py
+scripts/sql/create_admin_audit_log.sql
+scripts/style_secure_admin_like_site.py

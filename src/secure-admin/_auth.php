@@ -119,6 +119,7 @@ function admin_is_logged_in(): bool
 function admin_require_login(): void
 {
     admin_start_session();
+admin_check_remember();
 
     if (!admin_is_logged_in()) {
         header('Location: /secure-admin/login.php');
@@ -142,4 +143,41 @@ function admin_logout(bool $log = true): void
     if (session_status() === PHP_SESSION_ACTIVE) {
         session_destroy();
     }
+}
+
+
+function admin_set_remember_cookie(string $user): void {
+    $token = bin2hex(random_bytes(32));
+    $hash = hash('sha256', $token);
+
+    file_put_contents(__DIR__ . '/.remember_token', $hash);
+
+    setcookie(
+        'admin_remember',
+        $token,
+        time() + (60*60*24*30),
+        '/',
+        '',
+        false,
+        true
+    );
+}
+
+function admin_check_remember(): bool {
+    if (empty($_COOKIE['admin_remember'])) return false;
+
+    $token = $_COOKIE['admin_remember'];
+    $hash = hash('sha256', $token);
+
+    $file = __DIR__ . '/.remember_token';
+    if (!file_exists($file)) return false;
+
+    $stored = trim(file_get_contents($file));
+
+    if (hash_equals($stored, $hash)) {
+        $_SESSION['admin_logged_in'] = true;
+        return true;
+    }
+
+    return false;
 }

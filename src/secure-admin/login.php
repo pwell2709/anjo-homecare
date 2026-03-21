@@ -25,6 +25,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         $password = (string)($_POST['password'] ?? '');
 
         if (admin_login($username, $password)) {
+
+            if (!empty($_POST['remember'])) {
+                admin_set_remember_cookie($username);
+            }
+
             header('Location: /secure-admin/dashboard.php');
             exit;
         }
@@ -60,7 +65,15 @@ echo '<input id="password" name="password" type="password" autocomplete="current
 echo '</div>';
 
 echo '<div class="admin-actions">';
-echo '<button class="admin-btn" type="submit">Login</button>';
+echo '
+<div class="admin-field" style="margin-bottom:12px">
+<label>
+<input type="checkbox" name="remember">
+Remember me
+</label>
+</div>
+<button class="admin-btn" type="submit">Login</button>
+';
 echo '</div>';
 
 echo '</form>';
