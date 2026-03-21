@@ -2,3 +2,5 @@ _site/encoding-audit.txt
 _site/
 encoding-audit.txt
 backups/
+SQL_Pass.txt
+*.bak_*

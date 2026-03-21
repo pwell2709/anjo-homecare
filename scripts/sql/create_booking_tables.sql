@@ -1,0 +1,47 @@
+CREATE TABLE IF NOT EXISTS booking_consents (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  lang VARCHAR(5) NOT NULL,
+  page VARCHAR(255) NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  email VARCHAR(200) NOT NULL,
+  phone VARCHAR(200) DEFAULT NULL,
+  service VARCHAR(200) NOT NULL,
+  message TEXT NOT NULL,
+  ip_address VARCHAR(64) DEFAULT NULL,
+  user_agent TEXT DEFAULT NULL,
+  consent TINYINT(1) NOT NULL DEFAULT 0,
+  accept_terms TINYINT(1) NOT NULL DEFAULT 0,
+  accept_withdrawal TINYINT(1) NOT NULL DEFAULT 0,
+  accept_early TINYINT(1) NOT NULL DEFAULT 0,
+  terms_version VARCHAR(20) NOT NULL,
+  withdrawal_version VARCHAR(20) NOT NULL,
+  mail_sent TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (id),
+  KEY idx_created_at (created_at),
+  KEY idx_email (email),
+  KEY idx_lang (lang),
+  KEY idx_service (service)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS mail_log (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  booking_consent_id BIGINT UNSIGNED NOT NULL,
+  direction ENUM('outgoing') NOT NULL DEFAULT 'outgoing',
+  recipient VARCHAR(255) NOT NULL,
+  reply_to VARCHAR(255) DEFAULT NULL,
+  subject VARCHAR(255) NOT NULL,
+  body LONGTEXT NOT NULL,
+  headers LONGTEXT DEFAULT NULL,
+  send_status ENUM('pending','sent','failed') NOT NULL DEFAULT 'pending',
+  error_message TEXT DEFAULT NULL,
+  PRIMARY KEY (id),
+  KEY idx_booking_consent_id (booking_consent_id),
+  KEY idx_created_at (created_at),
+  KEY idx_send_status (send_status),
+  CONSTRAINT fk_mail_log_booking_consent
+    FOREIGN KEY (booking_consent_id)
+    REFERENCES booking_consents(id)
+    ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
